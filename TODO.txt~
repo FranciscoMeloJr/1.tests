@@ -1,0 +1,76 @@
+
+Data 29
+- 
+- MongoDB
+-exercicios Francis
+-Pagar pai da paul - ok
+Itau bco 341 / 3241 / 3421
+Agencia : 649
+Cc 11.428-0
+
+BRADESCO:bco 237
+ag 3430  
+Cc:0001604-7
+
+
+Nome: Nacib rishala abu Asseff
+Cpf: "26227148-29"
+
+Data 30
+
+- MongoDB
+	testes python
+	testes bash
+	testes javascript
+	
+-exercicios Francis
+	ok fork
+	ok pthreads
+	ok 
+
+ gcc -c foo.c
+ gcc foo.c -o foo
+ 
+
+Compilando:
+ gcc -c source.c
+ gcc -o source.o
+
+Makefiles - ok
+
+Direto:
+ gcc -o programa source1.c source2.c
+ .programa
+ 
+Data 2 Setembro
+	- see email:
+	Francois
+		- javascript mongodb - ok
+			fazer o exemplo de bash em js
+		- mutual exclusion: entender, aplicar em um exemplo com python, fazer um exemplo
+
+		- analisar com trace compare ambos os testes
+		- achar mais problemas
+		- implementar outro problema: reading from disk with php
+		
+	- fork x pthreads x pth
+		portable threads
+
+	- paraver
+	- reading about trace correlation - master thesis
+	- frances
+Data 3 de Setembro
+		
+		- strace
+Data 4 de Setembro
+	- regular meeting - progess meeting
+	- Reading again the article of francois
+	
+	- reading about trace correlation, since it is pointed "Comparison of system call traces recorded on different operating systems has been used to detect intrusions. Since some variations are inherent to the use of different operating systems, the authors transform low-level events into higher-level concepts to allow a meaningful comparison. Their algorithm computes a correlation score for two traces, but doesnt show individual differences. Also, it doesnt take timing into account"
+	- Leitura: State History Tree: an Incremental disk-based structure for very large interval data	
+
+
+Data 5 de Setembro
+	- Negociar com banco - ok
+	- Ler Performance Debugging in the Large via Mining millions of Stack Traces
+	- 
