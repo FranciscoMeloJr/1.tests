@@ -60,7 +60,7 @@ Data 2 Setembro
 	- reading about trace correlation - master thesis
 	- frances
 Data 3 de Setembro
-		
+		- Finalizacao de exercicios trace compare	
 		- strace
 Data 4 de Setembro
 	- regular meeting - progess meeting
@@ -68,9 +68,44 @@ Data 4 de Setembro
 	
 	- reading about trace correlation, since it is pointed "Comparison of system call traces recorded on different operating systems has been used to detect intrusions. Since some variations are inherent to the use of different operating systems, the authors transform low-level events into higher-level concepts to allow a meaningful comparison. Their algorithm computes a correlation score for two traces, but doesnt show individual differences. Also, it doesnt take timing into account"
 	- Leitura: State History Tree: an Incremental disk-based structure for very large interval data	
-
-
+	- Leitura Thesis of Trace Correlation
+	- 
 Data 5 de Setembro
 	- Negociar com banco - ok
+	- Final de Leitura - Trace Correlation
 	- Ler Performance Debugging in the Large via Mining millions of Stack Traces
+	- Summary of Papers - ok doing
+		
+		TraceDiff
+			Gosma tool
+			It is a visualization and mining tool for traces, which provides according to the authors: scalabilitym robustness and ease to use. This can show different metrics but the main one is to show strong and weak similarity bettwen function calls
+						
+		IntroPerf
+		
+		perf to call stack
+		
+		libundwind: tests with perf
+			
+	- http://www.tele-task.de/archive/series/overview/883
+	- Fazer backup docs - ok
+	- Completar um pouco do PhD escrito - ok
 	- 
+	- Lttng-simple understanding
+	
+	
+Data 6 de Setembro:
+	- chegar cedo!! - ok
+	- Ler: Article 1:  Efficient Methods for trace analysis parallelization
+		
+	- 9 mostrar trampos pro Francis - cheguei 9h30
+	
+	- Do more tests with TraceCompare		
+	- Do tests with perf and libunwind
+	- Trace Compass example of State History Tree
+		> generate them with trace compass
+
+	- re-do the implementation with python and CFT
+		
+	- Apresentacao Chefe - tenso
+	
+		
