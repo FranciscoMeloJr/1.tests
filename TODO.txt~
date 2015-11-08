@@ -107,5 +107,22 @@ Data 6 de Setembro:
 	- re-do the implementation with python and CFT
 		
 	- Apresentacao Chefe - tenso
-	
+		Muito legal, muito legal mesmo =D
+			Sai com uma pergunta: 
+			Quais partes de um programa sao as mais rapidas caso executado duas vezes? E caso executado n vezes, com pequenas mudancas?
+
+				GNU super optimizer
+				achar os hot spots que gastem mais/menos tempo ->
+				What is the 
+				Find correlation patter bettween the runs?
+				Keep track of the samples so you can track the fast
+				fazer as alteracoes em paralelo para ser mais rapido
+				
+	SuperOtimization	
+			What is it?
+			Superoptimization is the task of finding the optimal code sequence for a single, loop-free sequence of instructions. While garden-variety compiler optimizations really just improve 				code (real-world compilers generally cannot produce genuinely optimal code), a superoptimizer's goal is to find the optimal sequence.
+					
+			as used superoptimization to automatically generate general-purpose peephole optimizers.
+			
+			
 		
