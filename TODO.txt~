@@ -117,12 +117,23 @@ Data 6 de Setembro:
 				Find correlation patter bettween the runs?
 				Keep track of the samples so you can track the fast
 				fazer as alteracoes em paralelo para ser mais rapido
-				
+
+	- Linux trainning
+	- Libunwind program
+
+Prototipo>>>>>	Comparar programas de pontos em pontos
 	SuperOtimization	
 			What is it?
 			Superoptimization is the task of finding the optimal code sequence for a single, loop-free sequence of instructions. While garden-variety compiler optimizations really just improve 				code (real-world compilers generally cannot produce genuinely optimal code), a superoptimizer's goal is to find the optimal sequence.
 					
 			as used superoptimization to automatically generate general-purpose peephole optimizers.
 			
-			
+-saturday
+
+Python bidings with babeltrace
+
+Profiler visualization:
+	gprof2dot
+	gprof test | gprof2dot.py > foo.dot
+
 		

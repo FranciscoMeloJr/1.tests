@@ -128,5 +128,16 @@ Prototipo>>>>>	Comparar programas de pontos em pontos
 					
 			as used superoptimization to automatically generate general-purpose peephole optimizers.
 			
-			
+-saturday
+
+Python bidings with babeltrace
+
+Profiler visualization:
+	gprof2dot
+	gprof test | gprof2dot.py > foo.dot
+
+
+- libunwind x history tree x calling context tree
+- stacks builder x state history in tibeecompare
+
 		
