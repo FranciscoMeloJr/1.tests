@@ -136,4 +136,18 @@ Profiler visualization:
 	gprof2dot
 	gprof test | gprof2dot.py > foo.dot
 
+
+- libunwind x history tree x calling context tree
+- stacks builder x state history in tibeecompare
+
+monday 09/11
+	- 
+
+tuesday 10/11
+	-
+
+wednesday 11/11
+	-
+thursday 12/11
+friday 13/11
 		
