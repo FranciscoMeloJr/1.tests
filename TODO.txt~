@@ -141,13 +141,35 @@ Profiler visualization:
 - stacks builder x state history in tibeecompare
 
 monday 09/11
-	- 
+	- state history tree x calling context
+	TODO in Francois work:
+		- Declarative language used for trace analysis
+		- Analyze performance regressions: with by allowing the user to provide a file, mapping old function names to new names
+		- Dealing with code refactoring, 
+				> Static analysis techniques exist to identify cloned syntactic blocks between multiple source files
+				> 
+				comparison between traces recorded on different versions of the same program,
+		- avec le mode flight recorder de LTTng
+		- allow userspace processes to associate metrics with the current execution (e.g. number of returned results)
+		- handle programs written in a dynamic language and JIT compiled.
+		
+		- Il serait particulièrement intéressant de savoir comment se comporte notre solution dans des environnements
+		virtualisés tels que OpenStack ou Amazon Web Services.
+	
+	Limitation
+		Our userspace tracing library can only capture the stack for ELF binaries
+		To handle out of the box the specificities of each application
 
+	-Implementation of Learning Base Correlation
+		http://www.cs.cornell.edu/people/tj/publications/finley_joachims_05a.pdf
+		http://www.cs.sfu.ca/CourseCentral/741/jpei/readings/baya98.pdf
+		Implementation of SVM in python with 
 tuesday 10/11
 	-
 
 wednesday 11/11
 	-
+
 thursday 12/11
 friday 13/11
 		

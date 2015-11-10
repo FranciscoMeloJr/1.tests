@@ -159,7 +159,13 @@ monday 09/11
 	Limitation
 		Our userspace tracing library can only capture the stack for ELF binaries
 		To handle out of the box the specificities of each application
-		
+
+	-Implementation of Learning Base Correlation
+		http://www.cs.cornell.edu/people/tj/publications/finley_joachims_05a.pdf
+		http://www.cs.sfu.ca/CourseCentral/741/jpei/readings/baya98.pdf
+		Implementation of SVM in python with 	
+	
+	- Francais - ok
 tuesday 10/11
 	-
 
