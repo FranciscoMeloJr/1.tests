@@ -167,11 +167,18 @@ monday 09/11
 	
 	- Francais - ok
 tuesday 10/11
-	-
+	
+	Defining the model to apply compare in svm
+	Writing the code	
+
+	- TCF Quebec
+	- Apply for CSQ
+	- Federal application
 
 wednesday 11/11
-	-
+	- Reuniao
 
 thursday 12/11
+	
 friday 13/11
 		
