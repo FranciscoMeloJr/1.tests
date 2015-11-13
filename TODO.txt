@@ -185,7 +185,12 @@ wednesday 11/11
 	- Pegar um livro de compiladores
 	- mapa astral
 		ascendente em gemeos? lol!
-	- 
+	- exercicios - ok
+	- 4.1 - fazendo
+	
+	- decision tree
+		ver tutoriais
+
 
 thursday 12/11
 	
