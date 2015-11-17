@@ -178,21 +178,227 @@ tuesday 10/11
 	
 wednesday 11/11
 	- Meta: Ser o homem que a mama queria
-		rezar 2 vezes ao dia
+		rezar 2 vezes ao dia - ok
 		
 	- Reuniao = cancelada
 	- Delphi - adiado
-	- Pegar um livro de compiladores
+	- Pegar um livro de compiladores - ok
 	- mapa astral
-		ascendente em gemeos? lol!
+		ascendente em gemeos? lol! 
 	- exercicios - ok
 	- 4.1 - fazendo
-	
 	- decision tree
 		ver tutoriais
 
 
 thursday 12/11
-	
+	- learn french
+	new email:
+		- francisco_melo_jr@outlook.com
+			
 friday 13/11
+	- todo:
+		multilock
+		spinlock
+
+		touch - linux command
+		make clean
+		make
+
+		void *semrelay_worker(void *ptr) {
+		unsigned long i, j;
+		struct experiment *exp = ptr;
+
+		for (i = 0; i < exp->outer; i++) {
+			// TODO: wait
+			sem_wait(exp->lock);
+			for (j = 0; j < exp->inner; j++) {
+				unsigned long idx = (i * exp->inner) + j;
+				statistics_add_sample(exp->data, (double) idx);
+			}
+			// TODO: post
+			sem_post(exp->lock);
+		}
+		return NULL;
+	}
+
+	void semrelay_init(struct experiment *exp) {
+		exp->data = make_statistics();
+		// TODO: allocate a table of semaphores in exp->lock
+		// TODO: initialize the semaphores
+
+		exp->lock = malloc(sizeof(sem_t));
+		sem_init(exp->lock,0,1); //init
+	}
+
+	void semrelay_done(struct experiment *exp) {
+		statistics_copy(exp->stats, exp->data);
+		free(exp->data);
+		// TODO: cleanup
+		free(exp->lock);
+
+	}
+
+	Friday = Beatles!
+	traces
+
+Monday
+	todo
+		implementar semrelay
+		implementar interblocage
+Tuesday
+	
+Wedneday
+	
+Thursdays
+
+Friday
+	
+/*
+* interblocage.c
+*
+*  Created on: 2013-09-02
+*      Author: Francis Giraldeau <francis.giraldeau@gmail.com>
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <pthread.h>
+#include <semaphore.h>
+#include <signal.h>
+#include <time.h>
+#include <sys/time.h>
+#include <time.h>
+
+#define WATCHDOG_UDELAY 100000 // 100ms
+
+volatile int foo;
+volatile int bar;
+
+pthread_mutex_t lock_foo;
+pthread_mutex_t lock_bar;
+pthread_barrier_t barrier;
+
+pthread_t threads[2];
+
+int max_restart = 10;
+int nr_restart = 0;
+static void watchdog(int signr);
+
+void random_hog()
+{
+	volatile unsigned long i, x;
+	unsigned long count = random() / (1 << 20) + 10000;
+	for (i = 0; i < count; i++)
+		x++;
+}
+
+void *worker_foo(void *data)
+{
+	while(1) {
+		random_hog();
+		// TODO: lock lock_foo, then lock_bar
+		pthread_mutex_lock(&lock_foo);
+		pthread_mutex_lock(&lock_bar);
+		// TODO: force deadlock with a barrier
+		pthread_barrier_init (&barrier, NULL, 3);
+
+		foo = ++bar;
+		printf("foo %d\n", foo);
+	}
+	return NULL;
+}
+
+void *worker_bar(void *data)
+{
+	while(1) {
+		random_hog();
+		// TODO: lock lock_bar, then lock_foo
+		pthread_mutex_lock(&lock_foo);
+		pthread_mutex_lock(&lock_bar);
+
+		foo = ++bar;
+		printf("bar %d\n", bar);
+	}
+	return NULL;
+}
+
+void init_seed(void)
+{
+	struct timespec ts;
+	clock_gettime(CLOCK_REALTIME, &ts);
+	srandom(ts.tv_nsec);
+	srandom(time(NULL));
+}
+
+int prev_foo;
+
+void timer_start() {
+	struct itimerval timer;
+	struct sigaction action;
+	sigset_t set;
+
+	timer.it_interval.tv_sec = 0;
+	timer.it_interval.tv_usec = WATCHDOG_UDELAY;
+	timer.it_value.tv_sec = 0;
+	timer.it_value.tv_usec = WATCHDOG_UDELAY;
+
+	sigemptyset(&action.sa_mask);
+	action.sa_handler = watchdog;
+	action.sa_flags = 0;
+	sigaction(SIGALRM, &action, NULL);
+	setitimer(ITIMER_REAL, &timer, NULL);
+}
+
+void timer_stop() {
+	struct itimerval timer;
+
+	timer.it_interval.tv_sec = 0;
+	timer.it_interval.tv_usec = 0;
+	timer.it_value.tv_sec = 0;
+	timer.it_value.tv_usec = 0;
+
+	setitimer(ITIMER_REAL, &timer, NULL);
+}
+static void watchdog(int signr)
+{
+	(void) signr;
+	printf("watchdog\n");
+	// TODO: Detect deadlock and call exit(1)
+	printf("Test 1\n");
+	//how to detect interblocage lol??
+
+	exit(1);
+}
+int main(int argc, char **argv)
+{
+	init_seed();
+
+	// TODO: init lock_foo et lock_bar
+	pthread_mutex_lock(&lock_foo);
+	pthread_mutex_lock(&lock_bar);
+
+	// TODO: init barrier
+	pthread_barrier_init (&barrier, NULL, 1);//create a barrier with a count of 3
+	/*
+	* Create worker_foo and worker_bar threads
+	* All variables are globals.
+	*/
+
+	pthread_create(&threads[0], NULL, worker_foo, NULL);
+	pthread_create(&threads[1], NULL, worker_bar, NULL);
+	pthread_join(threads[0], NULL);
+	pthread_join(threads[1], NULL);
+
+	// TODO: destroy locks, but should never be reached
+	pthread_mutex_destroy(&lock_foo);
+	pthread_mutex_destroy(&lock_bar);
+
+	printf("done\n");
+	return 0;
+}
+
+
+			
+		
 	

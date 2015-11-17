@@ -178,21 +178,67 @@ tuesday 10/11
 	
 wednesday 11/11
 	- Meta: Ser o homem que a mama queria
-		rezar 2 vezes ao dia
+		rezar 2 vezes ao dia - ok
 		
 	- Reuniao = cancelada
 	- Delphi - adiado
-	- Pegar um livro de compiladores
+	- Pegar um livro de compiladores - ok
 	- mapa astral
-		ascendente em gemeos? lol!
+		ascendente em gemeos? lol! 
 	- exercicios - ok
 	- 4.1 - fazendo
-	
 	- decision tree
 		ver tutoriais
 
 
 thursday 12/11
-	
+	- learn french
+	new email:
+		- francisco_melo_jr@outlook.com
+			
 friday 13/11
+	- todo:
+		multilock
+		spinlock
+
+		touch - linux command
+		make clean
+		make
+
+		void *semrelay_worker(void *ptr) {
+		unsigned long i, j;
+		struct experiment *exp = ptr;
+
+		for (i = 0; i < exp->outer; i++) {
+			// TODO: wait
+			sem_wait(exp->lock);
+			for (j = 0; j < exp->inner; j++) {
+				unsigned long idx = (i * exp->inner) + j;
+				statistics_add_sample(exp->data, (double) idx);
+			}
+			// TODO: post
+			sem_post(exp->lock);
+		}
+		return NULL;
+	}
+
+	void semrelay_init(struct experiment *exp) {
+		exp->data = make_statistics();
+		// TODO: allocate a table of semaphores in exp->lock
+		// TODO: initialize the semaphores
+
+		exp->lock = malloc(sizeof(sem_t));
+		sem_init(exp->lock,0,1); //init
+	}
+
+	void semrelay_done(struct experiment *exp) {
+		statistics_copy(exp->stats, exp->data);
+		free(exp->data);
+		// TODO: cleanup
+		free(exp->lock);
+
+	}
+
+			
+		
 	
