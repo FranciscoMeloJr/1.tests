@@ -5,7 +5,7 @@ Data 29
 -exercicios Francis
 -Pagar pai da paul - ok
 Itau bco 341 / 3241 / 3421
-Agencia : 649
+Agencia : 6429
 Cc 11.428-0
 
 BRADESCO:bco 237
@@ -244,160 +244,25 @@ friday 13/11
 
 Monday
 	todo
-		implementar semrelay
-		implementar interblocage
+		implementar semrelay ok
+		implementar interblocage ok
+		mandar 760 doletas
+		
 Tuesday
-	
+	Falar com Naser
+		implementar lexique
+		implementar virtual memory
+		Ligar Luzia
+		Cartao de credito MasterCard
+		resolver treta Marcelo 
 Wedneday
-	
+		meeting
 Thursdays
-
+	11	Abrir conta Scotia Banque
+		Renegociar cartao de credito
+		
 Friday
-	
-/*
-* interblocage.c
-*
-*  Created on: 2013-09-02
-*      Author: Francis Giraldeau <francis.giraldeau@gmail.com>
-*/
-
-#include <stdio.h>
-#include <stdlib.h>
-#include <pthread.h>
-#include <semaphore.h>
-#include <signal.h>
-#include <time.h>
-#include <sys/time.h>
-#include <time.h>
-
-#define WATCHDOG_UDELAY 100000 // 100ms
-
-volatile int foo;
-volatile int bar;
-
-pthread_mutex_t lock_foo;
-pthread_mutex_t lock_bar;
-pthread_barrier_t barrier;
-
-pthread_t threads[2];
-
-int max_restart = 10;
-int nr_restart = 0;
-static void watchdog(int signr);
-
-void random_hog()
-{
-	volatile unsigned long i, x;
-	unsigned long count = random() / (1 << 20) + 10000;
-	for (i = 0; i < count; i++)
-		x++;
-}
-
-void *worker_foo(void *data)
-{
-	while(1) {
-		random_hog();
-		// TODO: lock lock_foo, then lock_bar
-		pthread_mutex_lock(&lock_foo);
-		pthread_mutex_lock(&lock_bar);
-		// TODO: force deadlock with a barrier
-		pthread_barrier_init (&barrier, NULL, 3);
-
-		foo = ++bar;
-		printf("foo %d\n", foo);
-	}
-	return NULL;
-}
-
-void *worker_bar(void *data)
-{
-	while(1) {
-		random_hog();
-		// TODO: lock lock_bar, then lock_foo
-		pthread_mutex_lock(&lock_foo);
-		pthread_mutex_lock(&lock_bar);
-
-		foo = ++bar;
-		printf("bar %d\n", bar);
-	}
-	return NULL;
-}
-
-void init_seed(void)
-{
-	struct timespec ts;
-	clock_gettime(CLOCK_REALTIME, &ts);
-	srandom(ts.tv_nsec);
-	srandom(time(NULL));
-}
-
-int prev_foo;
-
-void timer_start() {
-	struct itimerval timer;
-	struct sigaction action;
-	sigset_t set;
-
-	timer.it_interval.tv_sec = 0;
-	timer.it_interval.tv_usec = WATCHDOG_UDELAY;
-	timer.it_value.tv_sec = 0;
-	timer.it_value.tv_usec = WATCHDOG_UDELAY;
-
-	sigemptyset(&action.sa_mask);
-	action.sa_handler = watchdog;
-	action.sa_flags = 0;
-	sigaction(SIGALRM, &action, NULL);
-	setitimer(ITIMER_REAL, &timer, NULL);
-}
-
-void timer_stop() {
-	struct itimerval timer;
-
-	timer.it_interval.tv_sec = 0;
-	timer.it_interval.tv_usec = 0;
-	timer.it_value.tv_sec = 0;
-	timer.it_value.tv_usec = 0;
-
-	setitimer(ITIMER_REAL, &timer, NULL);
-}
-static void watchdog(int signr)
-{
-	(void) signr;
-	printf("watchdog\n");
-	// TODO: Detect deadlock and call exit(1)
-	printf("Test 1\n");
-	//how to detect interblocage lol??
-
-	exit(1);
-}
-int main(int argc, char **argv)
-{
-	init_seed();
-
-	// TODO: init lock_foo et lock_bar
-	pthread_mutex_lock(&lock_foo);
-	pthread_mutex_lock(&lock_bar);
-
-	// TODO: init barrier
-	pthread_barrier_init (&barrier, NULL, 1);//create a barrier with a count of 3
-	/*
-	* Create worker_foo and worker_bar threads
-	* All variables are globals.
-	*/
-
-	pthread_create(&threads[0], NULL, worker_foo, NULL);
-	pthread_create(&threads[1], NULL, worker_bar, NULL);
-	pthread_join(threads[0], NULL);
-	pthread_join(threads[1], NULL);
-
-	// TODO: destroy locks, but should never be reached
-	pthread_mutex_destroy(&lock_foo);
-	pthread_mutex_destroy(&lock_bar);
-
-	printf("done\n");
-	return 0;
-}
-
+		
 
 			
 		
