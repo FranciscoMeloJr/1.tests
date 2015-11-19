@@ -275,6 +275,19 @@ Questions for Francis
 	3- python buildings (atv 7)
 	ldconfig
 		ImportError: No module named 'babeltrace.reader'; 'babeltrace' is not a package
+		
+		Install babeltrace with python bindings
+		First: Remove 
+			sudo apt-get autoremove babeltrace
+			sudo apt-get autoremove	python3-babeltrace
+			sudo apt-get remove babeltrace
+		Then:
+			export PYTHON="python3"
+			export PYTHON_CONFIG="/usr/bin/python3-config"
+			./configure --enable-python-bindings
+			make
+			make install
+	
 
 	4- segfault (atv 8)
 		how to compute the 
@@ -285,6 +298,18 @@ Questions for Francis
 	           for(;;)			
 	5- randaddr (atv 9) 
 		didnt get yet the personality
+
+
+
+
+
+
+
+
+
+
+
+
 	Todo
 		Pay stuff itau - ok
 		Assignment 2
