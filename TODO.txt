@@ -299,17 +299,6 @@ Questions for Francis
 	5- randaddr (atv 9) 
 		didnt get yet the personality
 
-
-
-
-
-
-
-
-
-
-
-
 	Todo
 		Pay stuff itau - ok
 		Assignment 2
@@ -318,6 +307,8 @@ Questions for Francis
 	
 		Trace Correlation as a form of high level analysis and automated anomaly detection is an important and promising area
 		Camila Silvestre Nunes
+		LCI sem imposto de renda
+
 Friday
 		
 

@@ -280,7 +280,7 @@ Questions for Francis
 		First: Remove 
 			sudo apt-get autoremove babeltrace
 			sudo apt-get autoremove	python3-babeltrace
-
+			sudo apt-get remove babeltrace
 		Then:
 			export PYTHON="python3"
 			export PYTHON_CONFIG="/usr/bin/python3-config"
@@ -318,6 +318,8 @@ Questions for Francis
 	
 		Trace Correlation as a form of high level analysis and automated anomaly detection is an important and promising area
 		Camila Silvestre Nunes
+		LCI sem imposto de renda
+
 Friday
 		
 
