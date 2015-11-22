@@ -273,6 +273,8 @@ Questions for Francis
 	2- pagedump (atv 6)
 		write( out, a, sizeof(a)) == -1)	
 	3- python buildings (atv 7)
+
+	AttributeError: 'dict' object has no attribute 'has_key'
 	ldconfig
 		ImportError: No module named 'babeltrace.reader'; 'babeltrace' is not a package
 		
@@ -308,8 +310,28 @@ Questions for Francis
 		Trace Correlation as a form of high level analysis and automated anomaly detection is an important and promising area
 		Camila Silvestre Nunes
 		LCI sem imposto de renda
-
 Friday
+		finalizar tarefas
+		french classes
+		enviar assigment 
+		
+		6		
+		7
+			python stuff
+		8
+			while(1)
+				acessing the memory
+		9
+
+Saturday
+		Finalizar demonstracao svm
+		
+Monday
+Tuesday
+Wednesday
+Thursday
+Friday		
+
 		
 
 			
