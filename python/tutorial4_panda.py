@@ -19,6 +19,9 @@ import numpy as np
 import json
 from pprint import pprint
 
+#test svc:
+import random as rd
+
 with open('test3.json') as data_file:    
     data = json.load(data_file)
 
@@ -214,25 +217,37 @@ def print_graph(lista):
     plt.scatter(x,y)
     plt.show()
     
-#this function SVC Example:
-def do_svm(lista):
-    print("SVM")
-    print(lista)
-
-    x = []
-    y = []
+#This function creates a SVC and classify:
+def SVM(a,b,lista,x_axis):
+    X = [a, b] #an array X of size [n_samples, n_features] holding the training samples
+    y = ["OPT","NOPT"] # of class labels (strings or integers)
+    clf = svm.SVC(kernel='linear', C = 1.0)#clf = svm.SVC()
+    clf.fit(X, y)
     for line in lista:
-        x.append(line[0])
-        y.append(line[1])
-        #print line[1]
-        
-    clf = svm.SVC()
-    x, y = digits.data[:-1], digits.target[:-1]
-    clf.fit(x,y)
-    
-    print(clf.predict(digits.data[-5]))
-    #plt.scatter(x,y)
+        #x.append(line[0])
+        #y.append(line[1])
+        print(clf.predict([[line[0], line[1]]]))
+
+    plt.plot(lista,linewidth=1.0)
+    #plt.subplot(1, 1, 1)
+    plt.ylabel('Quantity')
+    plt.xlabel(x_axis)
+    plt.title('SVC to Duration')
+
+    #plt.scatter(lista[:, 0], lista[:, 1], c = y)
+
+    plt.plot([21, 21], [0, 400], 'k-', lw=2)
+    plt.legend()
+
     plt.show()
+    
+#    i = 15
+#    j = 5
+#    while(i<=25):
+#    a = rd.uniform(-10, 10)
+#    print(i,j)
+#    print(clf.predict([[i, j]]))
+#    i+=0.1
     
 #This creates a list of all durations:    
 lista = do_lists('a')
@@ -245,7 +260,7 @@ print(len(lista))
 #do_histogram_withTimestamp(lista)
 
 #This the graph:
-#o_graph(lista,"bar")
+do_graph(lista,"bar")
 
 #This function does the graph:
 histogram = do_histogram(lista)
@@ -265,10 +280,15 @@ print_graph(array),#[2,8,1.8,8,0.6,11])
 
 
 #This function creates a svm: example - lista = [[1,5],[1.5,8],[1,9]]
-do_svm(array),#[2,8,1.8,8,0.6,11])
+#do_svm(array),#[2,8,1.8,8,0.6,11])
 
+#test:
+#do_svm(array)
 
-
+#Do the SVM and classify
+a=[19,0]
+b=[21,0]
+SVM(a,b,array,"Duration")
 
 
 
