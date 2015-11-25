@@ -22,6 +22,9 @@ from pprint import pprint
 #test svc:
 import random as rd
 
+#mathematical numpy:
+import numpy
+
 with open('test3.json') as data_file:    
     data = json.load(data_file)
 
@@ -106,7 +109,6 @@ def do_lists(arg):
     
     if(arg is 'f'):
         return f_list
-
        
     return arg
 
@@ -132,6 +134,49 @@ def do_lists_timestamp(metric):
     print(metric_list)
 
     return metric_list
+
+#This function takes a list and a metric and makes a list
+def do_list_from_list(list_full, metric):
+    "Function Do lists:"
+    x = 0
+    max = len(data['executions'])
+    ##Couting a:
+    metric_list = []
+    #shows:
+    while x < max:
+        #print data['executions'][x] #line 1
+        temp = []
+        
+        temp.append(list_full['executions'][x]['b'])#timestamp
+        #temp.append(list_full['executions'][x][metric])#a: duration, b, timestamp, 
+        metric_list.append(temp)#put in a array, metric can be 
+        x += 1
+        
+    #print(len(a_list))
+    print(metric_list)
+
+    return metric_list
+
+#This function takes the json and do a list for each [b,a,h] - waitblocked and samples []
+def do_list_full():
+    "Function does list full:"
+    x = 0
+    max = len(data['executions'])
+    ##Couting a:
+    full_list = []
+    #shows:
+    while x < max:
+        #print data['executions'][x] #line 1
+        temp = []
+        for metric in data['executions'][x]:
+            temp.append(data['executions'][x][metric])#timestamp
+            
+        full_list.append(temp)#put in a array, metric can be 
+        x += 1
+        
+    #print(len(a_list))
+    #print(full_list)
+    return full_list
 
 ##This function takes a list as argument and plots:
 def do_graph(a,kind):
@@ -211,8 +256,8 @@ def print_graph(lista):
         y.append(line[1])
         #print line[1]
 
-    print(x)
-    print(y)
+    #print(x)
+    #print(y)
     
     plt.scatter(x,y)
     plt.show()
@@ -223,51 +268,134 @@ def SVM(a,b,lista,x_axis):
     y = ["OPT","NOPT"] # of class labels (strings or integers)
     clf = svm.SVC(kernel='linear', C = 1.0)#clf = svm.SVC()
     clf.fit(X, y)
+    opt_list = []
+    nopt_list = []
     for line in lista:
-        #x.append(line[0])
-        #y.append(line[1])
-        print(clf.predict([[line[0], line[1]]]))
-
+        result = clf.predict([[line[0], line[1]]])
+        if 'OPT' in result:
+            opt_list.append([[line[0], line[1]]])
+        if 'NOPT'in result:
+            nopt_list.append([[line[0], line[1]]])
+        #print(result)
+        
     plt.plot(lista,linewidth=1.0)
     #plt.subplot(1, 1, 1)
     plt.ylabel('Quantity')
     plt.xlabel(x_axis)
-    plt.title('SVC to Duration')
+    plt.title('SVM')
 
     #plt.scatter(lista[:, 0], lista[:, 1], c = y)
 
     plt.plot([21, 21], [0, 400], 'k-', lw=2)
     plt.legend()
 
+    #plt.savefig("myfig.jpg") save in jpg
     plt.show()
+
     
-#    i = 15
-#    j = 5
-#    while(i<=25):
-#    a = rd.uniform(-10, 10)
-#    print(i,j)
-#    print(clf.predict([[i, j]]))
-#    i+=0.1
+    return {'OPT':opt_list, 'NOPT':nopt_list} #return the two lists for later analysis
+
+#search a list inside another:
+def show_list(list_metric):
+    list_selected = []
+
+    for each in list_metric: 
+        list_selected.append(each[0][0]) #returns
+     
+    return list_selected;
+
+#search a list inside another:
+def search_list(list_full, list_metric,metric):
+    list_selected = []
+
+    comparing_list = show_list(list_metric)
+    x = 0
+    max = len(data['executions'])
+    for each in comparing_list:
+        print (each)
+        #rodar a lista completa
+        while x < max:
+            #comparar
+            aux = data['executions'][x][metric]
+            #print aux
+            if each is aux: #can b 
+            #    #pegar oq eh igual com each:
+                list_selected.append(data['executions'][x])
+            
+            x+=1
+         
+    return list_selected;
+#This fuction calculates the man of
+def mean_metric(list_full, metric):
+    numpy.mean(list_full)
     
-#This creates a list of all durations:    
-lista = do_lists('a')
+#Do the same but for h - wait-blocked: a for duration
+metric = 'a' #which is the duration
+lista = do_lists(metric)
+print(len(lista))
+
+#Do the graph:
+do_graph(lista,"bar")
+
+#Do histogram:
+histogram = do_histogram(lista)
+
+#Do an array:
+array = create_array(histogram)
+print(array)
+
+#Plot the graph:
+print_graph(array)
+
+#SVM:
+a=[19,0]
+b=[21,0]
+new_list = SVM(a,b,array,metric)
+
+#Show:
+print("Optimal group")
+print(new_list['OPT'])
+
+print("Not optimal group:")
+print(new_list['NOPT'])
+
+#Show all metrics:
+all_metrics = do_list_full()
+print(len(all_metrics))
+
+#Function that grabs a list of a specific metric:
+list_result = search_list(all_metrics, new_list['OPT'],metric)
+print("Info about the Opt list")
+print(list_result)
+
+#Shows list_result which is the list of the metric NOPT
+list_result = search_list(all_metrics, new_list['NOPT'],metric)
+print("Info about the nopt list")
+print(list_result)
+
+#Second layer of SVM:
+metric = 'h'
+do_list_from_list(list_result,metric)
+
+##This creates a list of all durations:    
+#lista = do_lists('a')
     
 ##This correlates timestamp and duration (a and b):
 #lista = do_lists_timestamp('a')
-print(len(lista))
+#print(len(lista))
 
 #This do an histogram with timestamp
 #do_histogram_withTimestamp(lista)
 
 #This the graph:
-do_graph(lista,"bar")
+#do_graph(lista,"bar")
 
 #This function does the graph:
-histogram = do_histogram(lista)
+#histogram = do_histogram(lista)
 
 #This function creates an array [value:quantity]:
-array = create_array(histogram)
-print(array)
+#array = create_array(histogram)
+#print(array)
 
 #This function creates a csv with the array:
 #create_csf(array,"test3x.csv")
@@ -276,7 +404,7 @@ print(array)
 #open_csf("test3x.csv")
 
 #This function creates a graph: example - lista = [[1,5],[1.5,8],[1,9]]
-print_graph(array),#[2,8,1.8,8,0.6,11])
+#print_graph(array),#[2,8,1.8,8,0.6,11])
 
 
 #This function creates a svm: example - lista = [[1,5],[1.5,8],[1,9]]
@@ -286,40 +414,6 @@ print_graph(array),#[2,8,1.8,8,0.6,11])
 #do_svm(array)
 
 #Do the SVM and classify
-a=[19,0]
-b=[21,0]
-SVM(a,b,array,"Duration")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+#a=[19,0]
+#b=[21,0]
+#SVM(a,b,array,"Duration")
