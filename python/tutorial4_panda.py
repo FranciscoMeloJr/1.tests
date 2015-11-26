@@ -2,6 +2,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 from matplotlib.pyplot import *
+from mpl_toolkits.mplot3d import axes3d
 
 from collections import Counter
 
@@ -266,34 +267,53 @@ def print_graph(lista):
 def SVM(a,b,lista,x_axis):
     X = [a, b] #an array X of size [n_samples, n_features] holding the training samples
     y = ["OPT","NOPT"] # of class labels (strings or integers)
-    clf = svm.SVC(kernel='linear', C = 1.0)#clf = svm.SVC()
+    clf = svm.SVC(kernel='rbf')#clf = svm.SVC(kernel='linar', C=1.0)
     clf.fit(X, y)
     opt_list = []
     nopt_list = []
+    temp = []
     for line in lista:
+        aux = []
         result = clf.predict([[line[0], line[1]]])
+        aux.append([line[0], line[1]])
         if 'OPT' in result:
             opt_list.append([[line[0], line[1]]])
         if 'NOPT'in result:
             nopt_list.append([[line[0], line[1]]])
-        #print(result)
-        
-    plt.plot(lista,linewidth=1.0)
+        temp.append(aux)
+
+    print("Lista:")
+    print(lista)
+    plt.plot(lista),# linewidth=5.0)
     #plt.subplot(1, 1, 1)
     plt.ylabel('Quantity')
-    plt.xlabel(x_axis)
+    #plt.xlabel(x_axis)
     plt.title('SVM')
 
     #plt.scatter(lista[:, 0], lista[:, 1], c = y)
+    #plt.imshow(digits.images[-5], cmap=plt.cm.gray_r, interpolation='nearest')
 
     plt.plot([21, 21], [0, 400], 'k-', lw=2)
-    plt.legend()
+    #plt.legend()
 
     #plt.savefig("myfig.jpg") save in jpg
     plt.show()
 
     
     return {'OPT':opt_list, 'NOPT':nopt_list} #return the two lists for later analysis
+#Function svc shape ovo
+def svm_ovo():
+    X = [[0], [1], [2], [3]]
+    Y = [0, 1, 2, 3]
+    clf = svm.SVC(decision_function_shape='ovo')
+    clf.fit(X, Y) 
+    
+    dec = clf.decision_function([[1]])
+    dec.shape[1] # 4 classes: 4*3/2 = 6
+    
+    clf.decision_function_shape = "ovr"
+    dec = clf.decision_function([[1]])
+    dec.shape[1]
 
 #search a list inside another:
 def show_list(list_metric):
@@ -312,27 +332,92 @@ def search_list(list_full, list_metric,metric):
     x = 0
     max = len(data['executions'])
     for each in comparing_list:
-        print (each)
+        #print (each)
         #rodar a lista completa
         while x < max:
             #comparar
             aux = data['executions'][x][metric]
             #print aux
             if each is aux: #can b 
-            #    #pegar oq eh igual com each:
+                #pegar oq eh igual com each:
                 list_selected.append(data['executions'][x])
             
             x+=1
          
     return list_selected;
+
+#takes this list and brings a list:
+def search_list_in_list(list_metric,metric):
+
+    temp = []
+    print("Searc_list_in_list:")
+    for each in list_metric:
+        try:
+            aux = each[metric]
+            if aux is not None:
+                temp.append(aux)
+        except:
+            pass
+
+    print(temp)
+    return temp
+    #print(list_metric)
+
 #This fuction calculates the man of
 def mean_metric(list_full, metric):
-    numpy.mean(list_full)
+
+    temp = []
+    #print("Mean Metric:")
+    for each in list_full:
+        try:
+            aux = each[metric]
+            if aux is not None:
+                temp.append(aux)
+        except:
+            pass
+
+    aux = 0
+    x = 0
+    for each in temp:
+            aux+= each
+            x+=1
+
+    arr = numpy.array(temp)
+    #print(numpy.mean(arr, axis=0))
+    print("Mean is and the std is:")
+    print(aux/x)
+    print(numpy.std(arr, axis=0))
     
+    return aux/x
+    
+#This fuction calculates the man of
+def test_3D():
+    
+    fig = plt.figure()
+    ax = fig.add_subplot(111, projection='3d')
+
+    x, y, z = axes3d.get_test_data(0.05)
+    ax.plot_wireframe(x,y,z, rstride=2, cstride=2)
+
+    plt.draw()
+
+#This fuction calculates the man of
+def list_samples(list_result_opt):
+
+    x = 0
+    #print(data['stacks'])
+    for each in data['stacks']:
+        print(data['stacks']['151']['f'])
+        x+=1
+            
+    return list_result_opt
+
 #Do the same but for h - wait-blocked: a for duration
 metric = 'a' #which is the duration
 lista = do_lists(metric)
 print(len(lista))
+#test_3D()
+svm_ovo()
 
 #Do the graph:
 do_graph(lista,"bar")
@@ -364,18 +449,28 @@ all_metrics = do_list_full()
 print(len(all_metrics))
 
 #Function that grabs a list of a specific metric:
-list_result = search_list(all_metrics, new_list['OPT'],metric)
+list_result_opt = search_list(all_metrics, new_list['OPT'],metric)
 print("Info about the Opt list")
-print(list_result)
+print(list_result_opt)
 
 #Shows list_result which is the list of the metric NOPT
-list_result = search_list(all_metrics, new_list['NOPT'],metric)
+list_result_nopt = search_list(all_metrics, new_list['NOPT'],metric)
 print("Info about the nopt list")
-print(list_result)
+print(list_result_nopt)
 
+# ----Second Analysis:
 #Second layer of SVM:
 metric = 'h'
-do_list_from_list(list_result,metric)
+
+search_list_in_list(list_result_opt,metric)
+metric = 'b'
+
+#Does a mean of a specifc metric:
+mean_metric(list_result_opt,metric)
+mean_metric(list_result_nopt,metric)
+
+#samples:
+list_samples(list_result_opt)
 
 ##This creates a list of all durations:    
 #lista = do_lists('a')
