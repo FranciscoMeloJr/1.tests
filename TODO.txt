@@ -330,10 +330,39 @@ Saturday
 			Organizing data
 			Labeling the data
 
+Monday - 23
+	Class at 9h30
+	Finishing SVM 	
 
+Tuesday - 24
+	Taking the results and coming with some data
+	- ok
+Wednesday - 25
+	
+	Do the assigment
+	
+	Research:	
+		changing the dimensions
 
-
-
+	Training:
+		- lexique
+		- 
+	Outros:
+		- ligar yuri
+		- falar com carlos
+		- cartao
+			- nao legal
+	Study french
+	
+Thursday - 26
+	Send the stuff - ok
+	do the 3d plot
+	do svm with 3 dimensions
+	study german
+			
+Friday
+		
+	
 
 
 

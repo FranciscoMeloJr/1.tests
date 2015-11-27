@@ -1,6 +1,5 @@
 #Panda:
 import pandas as pd
-from mpl_toolkits.mplot3d import axes3d
 import matplotlib.pyplot as plt
 from matplotlib.pyplot import *
 #from mpl_toolkits.mplot3d import axes3d
@@ -14,18 +13,12 @@ style.use("ggplot")
 #CSV:
 import csv
 
-#array to list:
-import numpy as np
-
 #Json:
 import json
 from pprint import pprint
 
 #test svc:
 import random as rd
-
-#mathematical numpy:
-import numpy
 
 with open('test3.json') as data_file:    
     data = json.load(data_file)
@@ -37,7 +30,69 @@ with open('test3.json') as data_file:
 ##This function takes a character as argument and return a list:
 ##for each json info it creates a list
 ##{u'a': 28,u'b': 1446538515159875,u'h': 28,u'samples': {u'84': 28, u'85': 28, u'86': 28}}
-##gives you: lista a: [28], list b = [1446538515159875], 
+##gives you: lista a: [28], list b = [1446538515159875],
+def do_lists_full():
+    print("Function Do lists:")
+    x = 0
+    max = len(data['executions'])
+    ##Couting a:
+    a_list = []
+    b_list = []
+    h_list = []
+    #shows:
+    while x < max:
+        #print data['executions'][x] #line 1
+        #temp_a = data['executions'][x]['a']#put in a array:
+        #temp_b = data['executions'][x]['b']#put in a array:
+        #temp_h = data['executions'][x]['h']#put in a array:
+        try:
+            val = data['executions'][x]['a']#put in a array:
+            if val is not None:#put in a array:
+                a_list.append(data['executions'][x]['a'])#put in a array:
+            else:
+                val = 0
+                a_list.append(val)
+        except:
+                val = 0
+                a_list.append(val)#put in a array:
+        x += 1
+    x =0
+    while x < max:
+        #print data['executions'][x] #line 1
+        #temp_a = data['executions'][x]['a']#put in a array:
+        #temp_b = data['executions'][x]['b']#put in a array:
+        #temp_h = data['executions'][x]['h']#put in a array:
+        try:
+            val = data['executions'][x]['b']#put in a array:
+            if val is not None:#put in a array:
+                b_list.append(data['executions'][x]['b'])#put in a array:
+            else:
+                val = 0
+                b_list.append(val)
+        except:
+                val = 0
+                b_list.append(val)#put in a array:
+        x += 1
+    x = 0
+    while x < max:
+        #print data['executions'][x] #line 1
+        #temp_a = data['executions'][x]['a']#put in a array:
+        #temp_b = data['executions'][x]['b']#put in a array:
+        #temp_h = data['executions'][x]['h']#put in a array:
+        try:
+            val = data['executions'][x]['h']#put in a array:
+            if val is not None:#put in a array:
+                h_list.append(data['executions'][x]['h'])#put in a array:
+            else:
+                val = 0
+                h_list.append(val)
+        except:
+                val = 0
+                h_list.append(val)#put in a array:
+        x += 1
+    #Return a dictionary:
+    return {'a':a_list,'b':b_list,'h':h_list}
+
 def do_lists(arg):
     "Function Do lists:"
     x = 0
@@ -330,11 +385,12 @@ def search_list(list_full, list_metric,metric):
     list_selected = []
 
     comparing_list = show_list(list_metric)
-    x = 0
+
     max = len(data['executions'])
     for each in comparing_list:
         #print (each)
         #rodar a lista completa
+        x = 0
         while x < max:
             #comparar
             aux = data['executions'][x][metric]
@@ -352,64 +408,23 @@ def search_list_in_list(list_metric,metric):
 
     temp = []
     print("Searc_list_in_list:")
+    print(metric)
     for each in list_metric:
         try:
             aux = each[metric]
             if aux is not None:
                 temp.append(aux)
         except:
-            pass
+            aux = 0
+            temp.append(aux)
 
     print(temp)
     return temp
     #print(list_metric)
-
-#This fuction calculates the man of
-def mean_metric(list_full, metric):
-
-    temp = []
-    #print("Mean Metric:")
-    for each in list_full:
-        try:
-            aux = each[metric]
-            if aux is not None:
-                temp.append(aux)
-        except:
-            pass
-
-    aux = 0
-    x = 0
-    for each in temp:
-            aux+= each
-            x+=1
-
-    arr = numpy.array(temp)
-    #print(numpy.mean(arr, axis=0))
-    print("Mean is and the std is:")
-    print(aux/x)
-    print(numpy.std(arr, axis=0))
-    
-    return aux/x
     
 #This fuction calculates the man of
 #from mpl_toolkits.mplot3d import axes3d
 #import matplotlib.pyplot as plt
-
-def test_3D():
-    fig = plt.figure()
-    AX = fig.add_subplot(111, projection='3d')
-
-    X = [1,2,3,4,5,6,7,8,9,10]
-    Y = [5,6,7,3,3,5,7,9,11,8]
-    Z = [2,3,3,3,5,7,9,11,9,10]
-
-    AX.scatter(X,Y,Z,c='r', marker='o')
-
-    AX.set_xlabel('x label')
-    AX.set_ylabel('y label')
-    AX.set_zlabel('z label')
-
-    plt.show()
 
 
 #This fuction calculates the man of
@@ -423,66 +438,6 @@ def list_samples(list_result_opt):
             
     return list_result_opt
 
-#Do the same but for h - wait-blocked: a for duration
-test_3D()
-metric = 'a' #which is the duration
-lista = do_lists(metric)
-print(len(lista))
-
-svm_ovo()
-
-#Do the graph:
-do_graph(lista,"bar")
-
-#Do histogram:
-histogram = do_histogram(lista)
-
-#Do an array:
-array = create_array(histogram)
-print(array)
-
-#Plot the graph:
-print_graph(array)
-
-#SVM:
-a=[19,0]
-b=[21,0]
-new_list = SVM(a,b,array,metric)
-
-#Show:
-print("Optimal group")
-print(new_list['OPT'])
-
-print("Not optimal group:")
-print(new_list['NOPT'])
-
-#Show all metrics:
-all_metrics = do_list_full()
-print(len(all_metrics))
-
-#Function that grabs a list of a specific metric:
-list_result_opt = search_list(all_metrics, new_list['OPT'],metric)
-print("Info about the Opt list")
-print(list_result_opt)
-
-#Shows list_result which is the list of the metric NOPT
-list_result_nopt = search_list(all_metrics, new_list['NOPT'],metric)
-print("Info about the nopt list")
-print(list_result_nopt)
-
-# ----Second Analysis:
-#Second layer of SVM:
-metric = 'h'
-
-search_list_in_list(list_result_opt,metric)
-metric = 'b'
-
-#Does a mean of a specifc metric:
-mean_metric(list_result_opt,metric)
-mean_metric(list_result_nopt,metric)
-
-#samples:
-list_samples(list_result_opt)
 
 ##This creates a list of all durations:    
 #lista = do_lists('a')
