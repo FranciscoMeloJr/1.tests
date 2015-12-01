@@ -369,15 +369,37 @@ Friday
 	at 15h
 		present work for Naser
 	do assigment 7
-	do assigment 8
-	do assigment 9
+		python problem
+			solution:
 
-Sabado
+	Conection ssh:	
+	ssh isdema@l4712-01.info.polymtl.ca -X
+	12saisoJ
+
+	Write verbs in french -ok
+	French inscription	
 	
+Samadi	
+
+Dimanchi
+	Tenchi muyo
+		tenchi universe
+		tenchi movie forever
+		tenchi wiki
+
+Mon
+	Example for Naser
+	Talk with Hani
 	
+Tuesday
+	PR
+		24 months of authorized full-time live-in employment
 
+	Citizen:
+		Have lived in Canada as a PR for at least 4 years out of the 6 years (1,460 days) before you apply.	
 
-
+	Total: 6 ans (4 as pr and 2 as work permit)
+	If they change the law and consider the time as phd student for citizenship, as soon as I finish here, at 27/28, applying for citizenship, therefore before 30 canadian.Otherwise, 27+2+4 = 33 years.
 
 
 
