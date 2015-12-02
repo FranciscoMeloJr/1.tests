@@ -20,7 +20,7 @@ from pprint import pprint
 #test svc:
 import random as rd
 
-with open('test3.json') as data_file:    
+with open('open1000.json') as data_file:    
     data = json.load(data_file)
 
 #pprint(data)
@@ -39,6 +39,8 @@ def do_lists_full():
     a_list = []
     b_list = []
     h_list = []
+    e_list = []
+    g_list = []
     #shows:
     while x < max:
         #print data['executions'][x] #line 1
@@ -90,8 +92,42 @@ def do_lists_full():
                 val = 0
                 h_list.append(val)#put in a array:
         x += 1
+    x = 0
+    while x < max:
+        #print data['executions'][x] #line 1
+        #temp_a = data['executions'][x]['a']#put in a array:
+        #temp_b = data['executions'][x]['b']#put in a array:
+        #temp_h = data['executions'][x]['h']#put in a array:
+        try:
+            val = data['executions'][x]['e']#put in a array:
+            if val is not None:#put in a array:
+                e_list.append(data['executions'][x]['e'])#put in a array:
+            else:
+                val = 0
+                e_list.append(val)
+        except:
+                val = 0
+                e_list.append(val)#put in a array:
+        x += 1
+    x = 0
+    while x < max:
+        #print data['executions'][x] #line 1
+        #temp_a = data['executions'][x]['a']#put in a array:
+        #temp_b = data['executions'][x]['b']#put in a array:
+        #temp_h = data['executions'][x]['h']#put in a array:
+        try:
+            val = data['executions'][x]['g']#put in a array:
+            if val is not None:#put in a array:
+                g_list.append(data['executions'][x]['g'])#put in a array:
+            else:
+                val = 0
+                g_list.append(val)
+        except:
+                val = 0
+                g_list.append(val)#put in a array:
+        x += 1
     #Return a dictionary:
-    return {'a':a_list,'b':b_list,'h':h_list}
+    return {'a':a_list,'b':b_list,'h':h_list,'e':e_list,'g':g_list}
 
 def do_lists(arg):
     "Function Do lists:"
@@ -161,6 +197,10 @@ def do_lists(arg):
         print("Timestamp")
         return b_list
     
+    if(arg is 'e'):
+        print("run")
+        return e_list
+
     if(arg is 'h'):
         return h_list
     
@@ -288,6 +328,7 @@ def create_array(mylist):
     print p
     return p #p is an array of arrays: [[4,7],[85,1] ...]
 
+
 #this function open a csv file:
 def open_csf(fname):
     print("Open CSV File")
@@ -357,6 +398,45 @@ def SVM(a,b,lista,x_axis):
 
     
     return {'OPT':opt_list, 'NOPT':nopt_list} #return the two lists for later analysis
+#This function creates a SVC and classify:
+def SVM_2(a,b,lista,x_axis):
+    X = [[0,0], [50,0], [2,5], [200,0]] #X = [[150,0],[151,0]] #an array X of size [n_samples, n_features] holding the training samples
+    y = [0, 1, 2, 3]#y = ["OPT","NOPT"] # of class labels (strings or integers)
+    clf = svm.SVC(decision_function_shape='ovo') #clf = svm.SVC(kernel='linear', C=1.0) #svm.SVC(kernel='rbf')#
+    clf.fit(X, y)
+    opt_list = []
+    mopt_list = []
+    nopt_list = []
+    temp = []
+    for line in lista:
+        aux = []
+        result = clf.predict([[line[0], line[1]]])
+        aux.append([line[0], line[1]])
+        if 1 in result:
+            opt_list.append([[line[0], line[1]]])
+        if 2 in result:
+            nopt_list.append([[line[0], line[1]]])
+        if 3 in result:
+            mopt_list.append([[line[0], line[1]]])
+        temp.append(aux)
+
+    print("Lista:")
+    print(lista)
+    #plt.plot(lista),# linewidth=5.0)
+    #plt.subplot(1, 1, 1)
+    plt.ylabel('Quantity')
+    #plt.xlabel(x_axis)
+    plt.title('SVM')
+
+    #plt.scatter(lista[:, 0], lista[:, 1], c = y)
+    #plt.imshow(digits.images[-5], cmap=plt.cm.gray_r, interpolation='nearest')
+
+    plt.plot(lista)
+    #plt.legend()
+    plt.show()
+    #plt.savefig("myfig.jpg") in jpg
+    
+    return {'MOPT':mopt_list,'OPT':opt_list, 'NOPT':nopt_list} #return the two lists for later analysis
 #Function svc shape ovo
 def svm_ovo():
     X = [[0], [1], [2], [3]]
@@ -427,7 +507,7 @@ def search_list_in_list(list_metric,metric):
 #import matplotlib.pyplot as plt
 
 
-#This fuction calculates the man of
+#This fuction calculates the mean of
 def list_samples(list_result_opt):
 
     x = 0
@@ -438,7 +518,46 @@ def list_samples(list_result_opt):
             
     return list_result_opt
 
+#this function creates a list of metrics inside the json:
+def do_list_metrics():
+    "Function does list full:"
+    x = 0
+    max = len(data['executions'])
+    ##Couting a:
+    metrics_list = []
+    temp = []
+    while x < max:
+        for metric in data['executions'][x]:
+            if not metric in metrics_list:
+                metrics_list.append(metric)
+        x+=1
+    
+    return metrics_list
 
+#this function creates a function of 2 metrics:
+def merge_metrics(list1, list2, list3):
+    list_result = []
+    #print(list1)
+    #print(list2)
+    #print(list3)
+
+    if len(list3) > 0:
+        x = 0
+        while x < len(list1):
+            list_result.append([list1[x], list2[x],list3[x]])
+            x+=1
+    else:
+        x = 0
+        while x < len(list1):
+            list_result.append([list1[x], list2[x]])
+            x+=1
+            
+    return list_result
+        
+def print_function(list, metric):
+    print (metric)
+    print list[metric];
+    
 ##This creates a list of all durations:    
 #lista = do_lists('a')
     
@@ -479,3 +598,5 @@ def list_samples(list_result_opt):
 #a=[19,0]
 #b=[21,0]
 #SVM(a,b,array,"Duration")
+#tests unitario:
+print(merge_metrics([1,2,3],[5,6,7],[]))

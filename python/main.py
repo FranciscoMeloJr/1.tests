@@ -10,11 +10,19 @@ from math_module import *
 #hello()
 #Function for 3D modules: function3D_args([1,2,3,4,5,6,7,8,9,10],[5,6,7,3,3,5,7,9,11,8],[2,3,3,3,5,7,9,11,9,10])
 
-metric = ['a','b','h']
+#Define Metrics:
+metric = ['a','b','g']
+#Define an dictionary:
 dictionary = do_lists_full()
-function3D_args(dictionary['a'],dictionary['b'],dictionary['h'],metric)
-calc_square_sum(dictionary['a'],dictionary['b'],dictionary['h'])
 
+#Print the list of 'a' for this specific dictionary:
+print_function(dictionary,'g')
+
+#Do 3D graphs:
+function3D_args(dictionary['a'],dictionary['b'],dictionary['e'],metric)
+calc_square_sum(dictionary['a'],dictionary['b'],dictionary['e'])
+
+print("Lista duration --")
 metric = 'a' #which is the duration
 lista = do_lists(metric)
 print(len(lista))
@@ -31,14 +39,23 @@ histogram = do_histogram(lista)
 array = create_array(histogram)
 print(array)
 
+#create an array of [metric1, metric2, timestamp]
+print("--- Example ---")
+example = merge_metrics(dictionary['a'],dictionary['h'],[])#dictionary['b'],dictionary['a'],dictionary['g'])
+print(example)
+
+#data:
+#example = ['a','h']
+#array is a histogram
+
 #Plot the graph:
-print_graph(array)
+print_graph(example)
 
 #SVM:
 a=[19,0]
 b=[21,0]
-new_list = SVM(a,b,array,metric)
-
+#new_list = SVM(a,b,array,metric)
+new_list = SVM_2(a,b,example,metric) #classify in 3 groups
 #Show:
 print("Optimal group")
 print(new_list['OPT'])
@@ -49,6 +66,11 @@ print(new_list['NOPT'])
 #Show all metrics:
 all_metrics = do_list_full()
 print(len(all_metrics))
+
+#Function that grabs a list of a specific metric:
+list_result_mopt = search_list(all_metrics, new_list['MOPT'],metric)
+print("Info about the Opt list")
+print(list_result_mopt)
 
 #Function that grabs a list of a specific metric:
 list_result_opt = search_list(all_metrics, new_list['OPT'],metric)

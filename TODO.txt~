@@ -404,7 +404,7 @@ Monday - Lundi
 	Personality:	
 	https://www.win.tue.nl/~aeb/linux/lk/lk-3.html
 	
-	kernel - syscall_entry_close
+	kernel syscall_entry_open/syscall_entry_close
 	nao eh gerado json although there are 125 executions to the database
 	
 	Solution

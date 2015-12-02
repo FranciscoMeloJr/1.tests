@@ -411,6 +411,9 @@ Monday - Lundi
 		run as root
 
 Tuesday - Mardi
+	
+	Adotar um orfao
+	
 Wednesday - Mercredi	
 Thursday - Jeudi
 Friday - Vendredi

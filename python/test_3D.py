@@ -47,7 +47,12 @@ def translate(metric):
             new_metrics[i] = 'timestamp'
         if each is 'h':
             new_metrics[i] = 'wait-blocked'
-            
+        if each is 'f':
+            new_metrics[i] = 'interrupted'
+        if each is 'g':
+            new_metrics[i] = 'wait-cpu'
+        if each is 'e':
+            new_metrics[i] = 'run'
         i+=1
     return new_metrics
 
