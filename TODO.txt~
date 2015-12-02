@@ -387,18 +387,34 @@ Dimanchi
 		tenchi movie forever
 		tenchi wiki
 
-Mon
+Monday - Lundi
 	Example for Naser
 	Talk with Hani
 	
-Tuesday
-	PR
-		24 months of authorized full-time live-in employment
 
-	Citizen:
-		Have lived in Canada as a PR for at least 4 years out of the 6 years (1,460 days) before you apply.	
+	Conection to: l4712-01.info.polymtl.ca closed.
+	
+	
+	source setenv.sh
+	src/build/tibeebuild --name [name] --begin [begin] --end [end] --trace [trace]
+	
+	Error:
+	src/build/tibeebuild: error while loading shared libraries: libtigerbeetle.so: cannot open shared object file: No such file or directory	
 
-	Total: 6 ans (4 as pr and 2 as work permit)
+	Personality:	
+	https://www.win.tue.nl/~aeb/linux/lk/lk-3.html
+	
+	kernel - syscall_entry_close
+	nao eh gerado json although there are 125 executions to the database
+	
+	Solution
+		run as root
+
+Tuesday - Mardi
+Wednesday - Mercredi	
+Thursday - Jeudi
+Friday - Vendredi
+Saturday - Samedi
 
 
 
