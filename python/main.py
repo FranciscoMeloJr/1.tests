@@ -56,7 +56,12 @@ a=[19,0]
 b=[21,0]
 
 #new_list = SVM_2(a,b,example,metric) #classify in 3 groups
-svm_ovo()
+#svm_ovo()
+
+#SVM:
+lista_x = [[0,0],[50,0],[100,0],[0,5],[0,10],[350,0]]
+lista_y = ['A','A','B','C','C','D']
+svm_ovo_applied(lista_x,lista_y,[1,0])
 
 new_list = SVM(a,b,array,metric)
 #Show:

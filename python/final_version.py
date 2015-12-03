@@ -426,20 +426,67 @@ def SVM_2(a,b,lista,x_axis):
     #plt.savefig("myfig.jpg") in jpg
     
     return {'MOPT':mopt_list,'OPT':opt_list, 'NOPT':nopt_list} #return the two lists for later analysis
-#Function svc shape ovo
+#Function svc shape ovo example
 def svm_ovo():
-    X = [[0], [1], [2], [3]]
-    Y = [0, 1, 2, 3]
+    X = [[0,0], [1,0], [0,1], [1,1]]
+    Y = ['A','B','C','D']
     clf = svm.SVC(decision_function_shape='ovo')
     clf.fit(X, Y) 
     
-    dec = clf.decision_function([[1]])
-    dec.shape[1] # 4 classes: 4*3/2 = 6
+    #dec = clf.decision_function([[1]])
+
+    point = [1,0]
+    ans = clf.predict(point)
+
+    print"Prediction %s" % ans
+
+    if ans == 'A':
+        color = 'b'
+    if ans == 'B':
+        color = 'c'
+    if ans == 'C':
+        color = 'y'
+    if ans == 'D':
+        color = 'm'
+        
+    plot_point_color(point[0], point[1], color, 500) # tem que mandar todos de uma vez, se mandar cada um da problema - plot_point_color(point[1], point[0], 'm', 500)
+    #print(dec.shape[2]) # 4 classes: 4*3/2 = 6
     
-    clf.decision_function_shape = "ovr"
-    dec = clf.decision_function([[1]])
-    dec.shape[1]
+    #clf.decision_function_shape = "ovr"
+    #dec = clf.decision_function([[2]])
+    #print(dec.shape[2])
     
+#Function svc shape ovo applied
+def svm_ovo_applied(list_x,list_y,list_points):
+    X = [list_x[0], list_x[1], list_x[2],list_x[3]] #[[0,0],[1,0],[0,1],[1,1]]
+    Y = [list_y[0],list_y[1],list_y[2],list_y[3]] #['A','B','C','D']
+    clf = svm.SVC(decision_function_shape='ovo')
+    clf.fit(X, Y) 
+    
+    #dec = clf.decision_function([[1]])
+
+    #predict list of points
+    ans = clf.predict(list_points)
+
+    #if ans == 'A':
+    #    color = 'b'
+    #if ans == 'B':
+    #    color = 'c'
+    #if ans == 'C':
+    #    color = 'y'
+    #if ans == 'D':
+    #    color = 'm'
+
+    #To print the result as color:   
+    #plot_point_color(point[0], point[1], color, 500) # tem que mandar todos de uma vez, se mandar cada um da problema - plot_point_color(point[1], point[0], 'm', 500)
+
+
+    #print(dec.shape[2]) # 4 classes: 4*3/2 = 6
+    
+    #clf.decision_function_shape = "ovr"
+    #dec = clf.decision_function([[2]])
+    #print(dec.shape[2])
+    return ans
 #
 def plot_point_color(axis_x, axis_y, choose_color,s):
     # Generate data...
@@ -562,6 +609,11 @@ def print_function(list, metric):
     print (metric)
     print list[metric];
     
+def takes_list_gives_svm_ovo_result(example):
+    "This function takes a list and gives the svm result "
+    for each in example:
+        print(svm_ovo_applied(lista_x,lista_y,each))
+
 ##This creates a list of all durations:    
 #lista = do_lists('a')
     
@@ -604,5 +656,9 @@ def print_function(list, metric):
 #SVM(a,b,array,"Duration")
 #tests unitario:
 print(merge_metrics([1,2,3],[5,6,7],[]))
-plot_point_color(3,2,'b',50)
+#plot_point_color(3,2,'b',50)
 svm_ovo()
+lista_x = [[0,0],[50,0],[100,0],[0,5],[0,10],[350,0]]
+lista_y = ['A','A','B','C','C','D']
+example = [[10, 10], [5, 5], [8, 8]]
+takes_list_gives_svm_ovo_result(example)
