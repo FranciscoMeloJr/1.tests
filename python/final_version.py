@@ -20,6 +20,10 @@ from pprint import pprint
 #test svc:
 import random as rd
 
+#warning:
+import warnings
+warnings.filterwarnings("ignore")
+
 with open('open1000.json') as data_file:    
     data = json.load(data_file)
 
@@ -466,6 +470,7 @@ def svm_ovo_applied(list_x,list_y,list_points):
     #dec = clf.decision_function([[1]])
 
     #predict list of points
+    
     ans = clf.predict(list_points)
 
     #if ans == 'A':
@@ -609,10 +614,16 @@ def print_function(list, metric):
     print (metric)
     print list[metric];
     
-def takes_list_gives_svm_ovo_result(example):
+def takes_list_gives_svm_ovo_result(list_x, list_y, example):
     "This function takes a list and gives the svm result "
+    ans = []
     for each in example:
-        print(svm_ovo_applied(lista_x,lista_y,each))
+        temp = svm_ovo_applied(list_x,list_y,each)
+        ans.append(temp)
+        
+    for each in ans:
+        print(each)
+    return ans
 
 ##This creates a list of all durations:    
 #lista = do_lists('a')
@@ -657,8 +668,10 @@ def takes_list_gives_svm_ovo_result(example):
 #tests unitario:
 print(merge_metrics([1,2,3],[5,6,7],[]))
 #plot_point_color(3,2,'b',50)
-svm_ovo()
-lista_x = [[0,0],[50,0],[100,0],[0,5],[0,10],[350,0]]
-lista_y = ['A','A','B','C','C','D']
-example = [[10, 10], [5, 5], [8, 8]]
-takes_list_gives_svm_ovo_result(example)
+#svm_ovo()
+
+list_x = [[0,0],[50,0],[100,0],[100,10],[0,5],[0,10],[350,0]]
+list_y = ['A','A','B','B','C','C','D']
+
+example = [[10, 10], [5, 5], [8, 8], [5, 5], [6, 6], [5, 5], [11, 0]]
+ans = takes_list_gives_svm_ovo_result(list_x, list_y, example)

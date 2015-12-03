@@ -61,7 +61,8 @@ b=[21,0]
 #SVM:
 lista_x = [[0,0],[50,0],[100,0],[0,5],[0,10],[350,0]]
 lista_y = ['A','A','B','C','C','D']
-svm_ovo_applied(lista_x,lista_y,[1,0])
+#svm_ovo_applied(lista_x,lista_y,[1,0])
+takes_list_gives_svm_ovo_result(lista_x, lista_y, example)
 
 new_list = SVM(a,b,array,metric)
 #Show:
