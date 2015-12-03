@@ -390,7 +390,7 @@ def SVM(a,b,lista,x_axis):
     #plt.scatter(lista[:, 0], lista[:, 1], c = y)
     #plt.imshow(digits.images[-5], cmap=plt.cm.gray_r, interpolation='nearest')
 
-    plt.plot([21, 21], [0, 400], 'k-', lw=2)
+    #plt.plot([21, 21], [0, 400], 'k-', lw=2)
     #plt.legend()
 
     #plt.savefig("myfig.jpg") save in jpg
@@ -404,22 +404,11 @@ def SVM_2(a,b,lista,x_axis):
     y = [0, 1, 2, 3]#y = ["OPT","NOPT"] # of class labels (strings or integers)
     clf = svm.SVC(decision_function_shape='ovo') #clf = svm.SVC(kernel='linear', C=1.0) #svm.SVC(kernel='rbf')#
     clf.fit(X, y)
-    opt_list = []
-    mopt_list = []
-    nopt_list = []
-    temp = []
-    for line in lista:
-        aux = []
-        result = clf.predict([[line[0], line[1]]])
-        aux.append([line[0], line[1]])
-        if 1 in result:
-            opt_list.append([[line[0], line[1]]])
-        if 2 in result:
-            nopt_list.append([[line[0], line[1]]])
-        if 3 in result:
-            mopt_list.append([[line[0], line[1]]])
-        temp.append(aux)
-
+    
+    clf.decision_function_shape = "ovr"
+    dec = clf.decision_function([[1,0]])
+    dec.shape[1]#4 classes
+    
     print("Lista:")
     print(lista)
     #plt.plot(lista),# linewidth=5.0)
@@ -431,7 +420,7 @@ def SVM_2(a,b,lista,x_axis):
     #plt.scatter(lista[:, 0], lista[:, 1], c = y)
     #plt.imshow(digits.images[-5], cmap=plt.cm.gray_r, interpolation='nearest')
 
-    plt.plot(lista)
+    #plt.plot(lista)
     #plt.legend()
     plt.show()
     #plt.savefig("myfig.jpg") in jpg
@@ -450,7 +439,22 @@ def svm_ovo():
     clf.decision_function_shape = "ovr"
     dec = clf.decision_function([[1]])
     dec.shape[1]
+    
+#
+def plot_point_color(axis_x, axis_y, choose_color,s):
+    # Generate data...
+    colors = ['b', 'c', 'y', 'm', 'r']
+    x = 0
+    sc = 0
+    for each in colors:
+        if each is choose_color:
+            sc = x
+        x+=1
+    
+    example = plt.scatter(axis_x, axis_y, marker='x', color=x,s=s)
 
+    plt.show()
+    
 #search a list inside another:
 def show_list(list_metric):
     list_selected = []
@@ -600,3 +604,5 @@ def print_function(list, metric):
 #SVM(a,b,array,"Duration")
 #tests unitario:
 print(merge_metrics([1,2,3],[5,6,7],[]))
+plot_point_color(3,2,'b',50)
+svm_ovo()

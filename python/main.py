@@ -54,8 +54,11 @@ print_graph(example)
 #SVM:
 a=[19,0]
 b=[21,0]
-#new_list = SVM(a,b,array,metric)
-new_list = SVM_2(a,b,example,metric) #classify in 3 groups
+
+#new_list = SVM_2(a,b,example,metric) #classify in 3 groups
+svm_ovo()
+
+new_list = SVM(a,b,array,metric)
 #Show:
 print("Optimal group")
 print(new_list['OPT'])
@@ -71,7 +74,7 @@ print(len(all_metrics))
 list_result_mopt = search_list(all_metrics, new_list['MOPT'],metric)
 print("Info about the Opt list")
 print(list_result_mopt)
-
+ 
 #Function that grabs a list of a specific metric:
 list_result_opt = search_list(all_metrics, new_list['OPT'],metric)
 print("Info about the Opt list")
