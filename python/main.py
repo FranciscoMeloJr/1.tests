@@ -27,7 +27,7 @@ metric = 'a' #which is the duration
 lista = do_lists(metric)
 print(len(lista))
 
-svm_ovo()
+#svm_ovo()
 
 #Do the graph:
 do_graph(lista,"bar")
@@ -58,19 +58,35 @@ b=[21,0]
 #new_list = SVM_2(a,b,example,metric) #classify in 3 groups
 #svm_ovo()
 
-#SVM:
-lista_x = [[0,0],[50,0],[100,0],[0,5],[0,10],[350,0]]
-lista_y = ['A','A','B','C','C','D']
-#svm_ovo_applied(lista_x,lista_y,[1,0])
-takes_list_gives_svm_ovo_result(lista_x, lista_y, example)
+#Defining tranning groups:
+list_x = [[0,0],[50,0],[150,0],[6,6],[10,10],[0,5],[350,0],[250,0],[200,0],[340,10],[350,5],[325,7]]
+list_y = ['A','A','A','B','B','B','C','C','C','D','D','D']
+#svm_ovo_applied(lista_x,lista_y,[1,0]):
+ans = takes_list_gives_svm_ovo_result(list_x, list_y, example) #[[1,2,'b'],[2,4,'b']]
+#plot:
+plot_point_color(ans)
+#separate the groups in a dictionary:
+dic_groups = build_groups(ans)
 
-new_list = SVM(a,b,array,metric)
+print("Group A")
+print(dic_groups['A'])
+
+print("Group B")
+print(dic_groups['B'])
+
+print("Group C")
+print(dic_groups['C'])
+
+print("Group D")
+print(dic_groups['D'])
+
+#new_list = SVM(a,b,array,metric)
 #Show:
-print("Optimal group")
-print(new_list['OPT'])
+#print("Optimal group")
+#print(new_list['OPT'])
 
-print("Not optimal group:")
-print(new_list['NOPT'])
+#print("Not optimal group:")
+#print(new_list['NOPT'])
 
 #Show all metrics:
 all_metrics = do_list_full()

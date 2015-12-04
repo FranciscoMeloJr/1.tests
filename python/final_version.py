@@ -445,7 +445,7 @@ def svm_ovo():
     print"Prediction %s" % ans
 
     if ans == 'A':
-        color = 'b'
+        color = 'r'
     if ans == 'B':
         color = 'c'
     if ans == 'C':
@@ -462,37 +462,29 @@ def svm_ovo():
     
 #Function svc shape ovo applied
 def svm_ovo_applied(list_x,list_y,list_points):
-    X = [list_x[0], list_x[1], list_x[2],list_x[3]] #[[0,0],[1,0],[0,1],[1,1]]
-    Y = [list_y[0],list_y[1],list_y[2],list_y[3]] #['A','B','C','D']
+    X = list_x#[list_x[0], list_x[1], list_x[2],list_x[3]] #[[0,0],[1,0],[0,1],[1,1]]
+    Y = list_y#[list_y[0],list_y[1],list_y[2],list_y[3]] #['A','B','C','D']
     clf = svm.SVC(decision_function_shape='ovo')
     clf.fit(X, Y) 
     
     #dec = clf.decision_function([[1]])
 
     #predict list of points
-    
+    print(list_points)
     ans = clf.predict(list_points)
 
-    #if ans == 'A':
-    #    color = 'b'
-    #if ans == 'B':
-    #    color = 'c'
-    #if ans == 'C':
-    #    color = 'y'
-    #if ans == 'D':
-    #    color = 'm'
+    if ans == 'A':
+        color = 'r'
+    if ans == 'B':
+        color = 'c'
+    if ans == 'C':
+        color = 'y'
+    if ans == 'D':
+        color = 'm'
+    print(ans)
+    return color
 
-    #To print the result as color:   
-    #plot_point_color(point[0], point[1], color, 500) # tem que mandar todos de uma vez, se mandar cada um da problema - plot_point_color(point[1], point[0], 'm', 500)
-
-
-    #print(dec.shape[2]) # 4 classes: 4*3/2 = 6
-    
-    #clf.decision_function_shape = "ovr"
-    #dec = clf.decision_function([[2]])
-    #print(dec.shape[2])
-    return ans
-#
+#plot a point and color
 def plot_point_color(axis_x, axis_y, choose_color,s):
     # Generate data...
     colors = ['b', 'c', 'y', 'm', 'r']
@@ -506,7 +498,24 @@ def plot_point_color(axis_x, axis_y, choose_color,s):
     example = plt.scatter(axis_x, axis_y, marker='x', color=x,s=s)
 
     plt.show()
+
+#print a list and color:
+def plot_point_color(liste): #[[1,2,'color'],[1,2,'color']]
+    # Generate data...
+    #[[x,y],[x,y],[x,y]]
+    colors = ['b', 'c', 'y', 'm', 'r']
+    x = 0
+    sc = 0
+
+    print("Liste")
+    print(liste)
+    for each in liste: #[[1],[2]]
+        print(each)
+        plt.scatter(each[0], each[1], marker='o', color=each[2],s=200)#,s=s)
     
+    plt.show()
+                                    
+                                                            
 #search a list inside another:
 def show_list(list_metric):
     list_selected = []
@@ -616,14 +625,36 @@ def print_function(list, metric):
     
 def takes_list_gives_svm_ovo_result(list_x, list_y, example):
     "This function takes a list and gives the svm result "
-    ans = []
+    temp = []
     for each in example:
-        temp = svm_ovo_applied(list_x,list_y,each)
-        ans.append(temp)
+        ans = 0
+        ans = svm_ovo_applied(list_x,list_y,each)
+        #ans_color = translate_group_color(ans)
+        temp.append([each[0],each[1],ans])
         
-    for each in ans:
+    for each in temp:
         print(each)
-    return ans
+        
+    return temp
+
+#Build dictionary from a generic list:
+def build_groups(temp):
+    dic ={}
+    list_a =[]
+    list_b =[]
+    list_c =[]
+    list_d =[]
+    for each in temp:
+        if each[2] == 'r':
+            list_a.append([each[0],each[1]])
+        if each[2] == 'c':
+            list_b.append([each[0],each[1]])
+        if each[2] == 'y':
+            list_c.append([each[0],each[1]])
+        if each[2] == 'm':
+            list_d.append([each[0],each[1]])
+
+    return {'A':list_a,'B':list_b,'C':list_c,'D':list_d}
 
 ##This creates a list of all durations:    
 #lista = do_lists('a')
@@ -670,8 +701,13 @@ print(merge_metrics([1,2,3],[5,6,7],[]))
 #plot_point_color(3,2,'b',50)
 #svm_ovo()
 
-list_x = [[0,0],[50,0],[100,0],[100,10],[0,5],[0,10],[350,0]]
-list_y = ['A','A','B','B','C','C','D']
-
-example = [[10, 10], [5, 5], [8, 8], [5, 5], [6, 6], [5, 5], [11, 0]]
+#define the groups of test
+list_x = [[0,0],[50,0],[150,0],[6,6],[10,10],[100,0],[100,10],[0,5],[0,10],[350,0],[250,0],[359,10],[340,10]]
+list_y = ['A','A','A','B','B','B','B','C','C','D','D','D','D']
+#define the test to be applied
+example = [[0, 0], [5, 5], [8, 8], [5, 5], [6, 6], [5, 5], [350, 0],[150,0],[300,10],[310,10]]
 ans = takes_list_gives_svm_ovo_result(list_x, list_y, example)
+#print the ans
+plot_point_color(ans)# which call for color_list([[1,2,'A'],[1,2,'A']])) -< [1,2,'b']
+print(build_groups(ans))
+
