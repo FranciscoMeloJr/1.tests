@@ -423,9 +423,20 @@ Thursday - Jeudi 3/12
 	education an investment priority, with substantial increases in government
 	spending.
 	
+	Finished the svm kernel - git - ok
+	
+	Assigments - ok 
+	
+	French 
+		Lista de espera
+		Exam - 3me etage
+
 Friday - Vendredi 4/12
-	
-	
+	Apply django for python project	
+	Apply other classification/metrics
+	15h
+		Show the results
+
 Saturday - Samedi
 
 
