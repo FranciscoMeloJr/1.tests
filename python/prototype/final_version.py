@@ -666,7 +666,38 @@ class trace_analysis:
                 list_d.append([each[0],each[1]])
 
         return {'A':list_a,'B':list_b,'C':list_c,'D':list_d}
+    
+    def write_csv(self,file,info):
+        with open(file, 'wb') as testfile:
+            csv_writer = csv.writer(testfile)
+            list_a = info['A']
+            list_b = info['B']
+            list_c = info['C']
+            list_d = info['D']
+            
+            for row in list_a:
+                csv_writer.writerow(row)
+                
+            for row in list_b:
+                csv_writer.writerow(row)
+                
+            for row in list_c:
+                csv_writer.writerow(row)
+                
+            for row in list_d:
+                csv_writer.writerow(row)
+            
+    #test function:        
+    def write(self, file, save):
+        
+        #save = [['A','B','C','D'],['1092','6','1','0'],['13','15','13','15']]
+        length = len(save[0])
 
+        with open(file, 'wb') as testfile:
+            csv_writer = csv.writer(testfile)
+            for y in range(length):
+                csv_writer.writerow([x[y] for x in save])
+                
 ##This creates a list of all durations:    
 #lista = do_lists('a')
     
@@ -709,7 +740,7 @@ class trace_analysis:
 #SVM(a,b,array,"Duration")
 #tests unitario:
 #Classes:
-analysis = trace_analysis('open1000.json',1)
+analysis = trace_analysis('data/open1000.json',1)
 
 print(analysis.merge_metrics([1,2,3],[5,6,7],[]))
 #plot_point_color(3,2,'b',50)
@@ -723,4 +754,5 @@ ans = analysis.takes_list_gives_svm_ovo_result(list_x, list_y, example)
 #print the ans
 analysis.plot_point_color(ans)# which call for color_list([[1,2,'A'],[1,2,'A']])) -< [1,2,'b']
 print(analysis.build_groups(ans))
-
+#analysis.write_csv("data/test.csv",analysis.build_groups(ans))
+analysis.write('data/test.csv',[['A','B','C','D'],['1092','6','1','0'],['13','15','13','15']])

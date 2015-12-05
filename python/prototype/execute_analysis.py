@@ -7,17 +7,24 @@ from main_module import *
 
 def main(argv):
     if sys.argv[1] is not None:
-        name = sys.argv[1]
+        Json = sys.argv[1]
+        if sys.argv[2] is not None:
+            Csv= sys.argv[2]
     else:
-        name = 'open1000.json'
+        Json = 'data/open1000.json'
+        Csv = 'data/test.csv'
         
-    dic_groups = func_do_script(name)
+    dic_groups = func_do_script(Json,Csv)
+
     print(len(dic_groups['A']))
     print(len(dic_groups['B']))
     print(len(dic_groups['C']))
     print(len(dic_groups['D']))
+    
+    func_save_csv(Json, Csv, dic_groups)
 
-    dic_groups = func_do_script('open1001.json')
+    test2 = 'data/open1001.json'
+    dic_groups = func_do_script(test2)
     print(len(dic_groups['A']))
     print(len(dic_groups['B']))
     print(len(dic_groups['C']))

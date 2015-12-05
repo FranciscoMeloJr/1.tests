@@ -6,8 +6,8 @@ from final_version import *
 from math_module import *
 
 
-def func_do_script(arg):
-    analysis = trace_analysis('open1000.json',1)
+def func_do_script(arg,arg2):
+    analysis = trace_analysis(arg,1)
     
     #Do the same but for h - wait-blocked: a for duration
     #hello()
@@ -83,6 +83,8 @@ def func_do_script(arg):
     print("Group D")
     print(dic_groups['D'])
 
+    #csv:
+    analysis.write_csv(arg2,dic_groups)
     return dic_groups
     #new_list = SVM(a,b,array,metric)
     #Show:
@@ -141,5 +143,20 @@ def func_do_script(arg):
 
     #samples:
     #list_samples(list_result_opt)
+def func_save_csv(Json, Csv, data):
+    aux = []
+    aux.append(len(data['A']))
+    aux.append(len(data['B']))
+    aux.append(len(data['C']))
+    aux.append(len(data['D']))
+
+    list_groups = ['A','B','C','D']
+    list_groups.append(aux)
     
-func_do_script('open1000.json')
+    analysis = trace_analysis(Json,1)
+    analysis.write(Csv,list_groups)
+    
+    print aux
+    
+ans = func_do_script('data/open1000.json',"data/test.csv")
+func_save_csv('data/test.csv',"data/open1000.json", ans)
