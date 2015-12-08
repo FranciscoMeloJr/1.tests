@@ -37,17 +37,18 @@ warnings.filterwarnings("ignore")
 #Defines a json:
 class trace_analysis:
 
-    def __init__(self,jsName,identification):
+    def __init__(self,jsName,identification,withgraph):
         self.jsonName = jsName
         self.id = identification
         self.defineJson()
+        self.graph = withgraph
         
     def defineJson(self):
         with open(self.jsonName) as data_file:    
             self.data = json.load(data_file)
 
     def do_lists_full(self):
-        print("Function Do lists:")
+        "Function Do lists:"
         x = 0
         max = len(self.data['executions'])
         ##Couting a:
@@ -243,7 +244,7 @@ class trace_analysis:
             x += 1
             
         #print(len(a_list))
-        print(metric_list)
+        #print(metric_list)
 
         return metric_list
 
@@ -297,8 +298,10 @@ class trace_analysis:
         counts = Counter(a)
         df = pd.DataFrame.from_dict(counts, orient='index')
         #plt.figure();
-        df.plot(kind=kind)
-        plt.show()
+        #df.plot(kind=kind)
+        #plt.show()
+            
+        # saves the current figure into a pdf page
 
     ##This function takes a list as argument and returns a histogram:
     def do_histogram_withTimestamp(self, lista): #[[a,b],[a,b]]
@@ -326,7 +329,7 @@ class trace_analysis:
 
     #this function takes a histogram and creates a csv file:
     def create_csf(self, mylist, fname):
-        print("Creating a CSV File")
+        #print("Creating a CSV File")
         with open(fname, "wb") as f:
             writer = csv.writer(f)
 
@@ -346,7 +349,7 @@ class trace_analysis:
 
     #this function open a csv file:
     def open_csf(self,fname):
-        print("Open CSV File")
+        #print("Open CSV File")
         with open(fname) as csvfile:
             readCSV = csv.reader(csvfile, delimiter=',')
 
@@ -372,8 +375,8 @@ class trace_analysis:
         #print(x)
         #print(y)
         
-        plt.scatter(x,y)
-        plt.show()
+        #plt.scatter(x,y)
+        #plt.show()
         
     #This function creates a SVC and classify:
     def SVM(self, a,b,lista,x_axis):
@@ -396,11 +399,11 @@ class trace_analysis:
 
         print("Lista:")
         print(lista)
-        plt.plot(lista),# linewidth=5.0)
+        #plt.plot(lista),# linewidth=5.0)
         #plt.subplot(1, 1, 1)
-        plt.ylabel('Quantity')
+        #plt.ylabel('Quantity')
         #plt.xlabel(x_axis)
-        plt.title('SVM')
+        #plt.title('SVM')
 
         #plt.scatter(lista[:, 0], lista[:, 1], c = y)
         #plt.imshow(digits.images[-5], cmap=plt.cm.gray_r, interpolation='nearest')
@@ -409,7 +412,7 @@ class trace_analysis:
         #plt.legend()
 
         #plt.savefig("myfig.jpg") save in jpg
-        plt.show()
+        #plt.show()
 
         
         return {'OPT':opt_list, 'NOPT':nopt_list} #return the two lists for later analysis
@@ -437,7 +440,7 @@ class trace_analysis:
 
         #plt.plot(lista)
         #plt.legend()
-        plt.show()
+        #plt.show()
         #plt.savefig("myfig.jpg") in jpg
         
         return {'MOPT':mopt_list,'OPT':opt_list, 'NOPT':nopt_list} #return the two lists for later analysis
@@ -453,7 +456,7 @@ class trace_analysis:
         point = [1,0]
         ans = clf.predict(point)
 
-        print"Prediction %s" % ans
+        #print"Prediction %s" % ans
 
         if ans == 'A':
             color = 'r'
@@ -464,15 +467,15 @@ class trace_analysis:
         if ans == 'D':
             color = 'm'
             
-        plot_point_color(point[0], point[1], color, 500) # tem que mandar todos de uma vez, se mandar cada um da problema - plot_point_color(point[1], point[0], 'm', 500)
+        #plot_point_color(point[0], point[1], color, 500) # tem que mandar todos de uma vez, se mandar cada um da problema - plot_point_color(point[1], point[0], 'm', 500)
         #print(dec.shape[2]) # 4 classes: 4*3/2 = 6
         
         #clf.decision_function_shape = "ovr"
         #dec = clf.decision_function([[2]])
         #print(dec.shape[2])
         
-    #Function svc shape ovo applied
     def svm_ovo_applied(self, list_x, list_y, list_points):
+        "Function svc shape ovo applied"
         X = list_x#[list_x[0], list_x[1], list_x[2],list_x[3]] #[[0,0],[1,0],[0,1],[1,1]]
         Y = list_y#[list_y[0],list_y[1],list_y[2],list_y[3]] #['A','B','C','D']
         clf = svm.SVC(kernel='rbf')
@@ -481,7 +484,7 @@ class trace_analysis:
         #dec = clf.decision_function([[1]])
 
         #predict list of points
-        print(list_points)
+        #print(list_points)
         ans = clf.predict(list_points)
 
         if ans == 'A':
@@ -506,9 +509,9 @@ class trace_analysis:
                 sc = x
             x+=1
         
-        example = plt.scatter(axis_x, axis_y, marker='x', color=x,s=s)
+        #example = plt.scatter(axis_x, axis_y, marker='x', color=x,s=s)
 
-        plt.show()
+        #plt.show()
 
     #print a list and color:
     def plot_point_color(self,liste): #[[1,2,'color'],[1,2,'color']]
@@ -518,13 +521,13 @@ class trace_analysis:
         x = 0
         sc = 0
 
-        print("Liste")
-        print(liste)
+        #print("Liste")
+        #print(liste)
         for each in liste: #[[1],[2]]
             print(each)
-            plt.scatter(each[0], each[1], marker='o', color=each[2],s=200)#,s=s)
+            #plt.scatter(each[0], each[1], marker='o', color=each[2],s=200)#,s=s)
         
-        plt.show()
+        #plt.show()
                                         
                                                                 
     #search a list inside another:
@@ -697,6 +700,25 @@ class trace_analysis:
             csv_writer = csv.writer(testfile)
             for y in range(length):
                 csv_writer.writerow([x[y] for x in save])
+
+    def write_groups_csv(self, csv, ans,y):
+        aux = []
+        aux.append(len(ans['A']))
+        aux.append(len(ans['B']))
+        aux.append(len(ans['C']))
+        aux.append(len(ans['D']))
+    
+        list_groups = []
+        if y is not 'N':
+            list_groups.append(['A','B','C','D'])
+        list_groups.append(aux)
+
+        #print(list_groups)
+        self.write(csv,list_groups)
+    
+        #print aux
+        
+    
                 
 ##This creates a list of all durations:    
 #lista = do_lists('a')
@@ -740,7 +762,9 @@ class trace_analysis:
 #SVM(a,b,array,"Duration")
 #tests unitario:
 #Classes:
-analysis = trace_analysis('data/open1000.json',1)
+analysis = trace_analysis('data/prototipo.json',1,'N')
+teste = analysis.do_lists('a')
+print(len(teste))
 
 print(analysis.merge_metrics([1,2,3],[5,6,7],[]))
 #plot_point_color(3,2,'b',50)
@@ -753,6 +777,6 @@ example = [[0, 0], [5, 5], [8, 8], [5, 5], [6, 6], [5, 5], [350, 0],[150,0],[300
 ans = analysis.takes_list_gives_svm_ovo_result(list_x, list_y, example)
 #print the ans
 analysis.plot_point_color(ans)# which call for color_list([[1,2,'A'],[1,2,'A']])) -< [1,2,'b']
-print(analysis.build_groups(ans))
+ans = analysis.build_groups(ans)
 #analysis.write_csv("data/test.csv",analysis.build_groups(ans))
-analysis.write('data/test.csv',[['A','B','C','D'],['1092','6','1','0'],['13','15','13','15']])
+analysis.write_groups_csv("data/test.csv", ans,'N')

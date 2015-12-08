@@ -7,7 +7,7 @@ from math_module import *
 
 
 def func_do_script(arg,arg2):
-    analysis = trace_analysis(arg,1)
+    analysis = trace_analysis(arg,1,'N')
     
     #Do the same but for h - wait-blocked: a for duration
     #hello()
@@ -22,8 +22,8 @@ def func_do_script(arg,arg2):
     analysis.print_function(dictionary,'g')
 
     #Do 3D graphs:
-    function3D_args(dictionary['a'],dictionary['b'],dictionary['e'],metric)
-    calc_square_sum(dictionary['a'],dictionary['b'],dictionary['e'])
+    #function3D_args(dictionary['a'],dictionary['b'],dictionary['e'],metric)
+    #calc_square_sum(dictionary['a'],dictionary['b'],dictionary['e'])
 
     print("Lista duration --")
     metric = 'a' #which is the duration
@@ -67,7 +67,7 @@ def func_do_script(arg,arg2):
     #svm_ovo_applied(lista_x,lista_y,[1,0]):
     ans = analysis.takes_list_gives_svm_ovo_result(list_x, list_y, example) #[[1,2,'b'],[2,4,'b']]
     #plot:
-    analysis.plot_point_color(ans)
+    #analysis.plot_point_color(ans)
     #separate the groups in a dictionary:
     dic_groups = analysis.build_groups(ans)
 
@@ -85,6 +85,8 @@ def func_do_script(arg,arg2):
 
     #csv:
     analysis.write_csv(arg2,dic_groups)
+    analysis.write_groups_csv(arg2,dic_groups,'N')#n stands for not print group labels:
+    
     return dic_groups
     #new_list = SVM(a,b,array,metric)
     #Show:
@@ -143,20 +145,6 @@ def func_do_script(arg,arg2):
 
     #samples:
     #list_samples(list_result_opt)
-def func_save_csv(Json, Csv, data):
-    aux = []
-    aux.append(len(data['A']))
-    aux.append(len(data['B']))
-    aux.append(len(data['C']))
-    aux.append(len(data['D']))
 
-    list_groups = ['A','B','C','D']
-    list_groups.append(aux)
-    
-    analysis = trace_analysis(Json,1)
-    analysis.write(Csv,list_groups)
-    
-    print aux
-    
-ans = func_do_script('data/open1000.json',"data/test.csv")
-func_save_csv('data/test.csv',"data/open1000.json", ans)
+def do_test():
+    ans = func_do_script('data/open1000.json',"data/test.csv")# json and csv

@@ -5,7 +5,13 @@ import subprocess
 import sys
 import os
 
-def function(arg):
+#to delete folders:
+import shutil
+
+#timer:
+import time
+
+def xis(arg):
     "This function executes bash commands"
     bashCommand = arg
     process = subprocess.Popen(bashCommand.split(), stdout=subprocess.PIPE)
@@ -15,9 +21,7 @@ def function(arg):
     
 def password():
     "Sudo Su function"
-    bashCommand = "sudo su"
-    process = subprocess.Popen(bashCommand.split(), stdin=subprocess.PIPE)
-    process.communicate("Josias2103")
+    os.popen("sudo -S %s"%('ls'), 'w').write('Josias2103\n')
     
 def runProgramAndTrace():
     subprocess.call(['lttng-simple', '-k','-s','--','./open'])
@@ -26,61 +30,92 @@ def tigerBeatle():
     #tiger beetle:
     #os.chdir("/home/frank/Documents/Artigo/tibeecompare")
     #function("cd /home/frank/Documents/Artigo/tibeecompare")
-    bashCommand = "cd /home/frank/Documents/Artigo/tibeecompare"
-    output = subprocess.check_output(['bash','-c', bashCommand])
-
-    #source
-    bashCommand = "source setenv.sh"
+    print("tigerBeatle")
+    bashCommand = "sudo;cd /home/frank/Documents/Artigo/tibeecompare;pwd;ls;source setenv.sh;src/build/tibeebuild --name prototipo --begin kernel/syscall_entry_open --end kernel/syscall_entry_close --trace /home/frank/Documents/Artigo/1.tests/python/prototype/open-k;src/report/tibeereport --name prototipo;mv prototipo.json /home/frank/Documents/Artigo/1.tests/python/prototype/data"
     subprocess.call(['bash','-c', bashCommand])
 
+    #bashCommand = "pwd"
+    
+    #source
+    #bashCommand = "source setenv.sh"
+    
+
     #build
-    bashCommand = "src/build/tibeebuild --name prototipo --begin kernel/syscall_entry_open --end kernel/syscall_entry_close --trace /home/frank/Documents/Artigo/1.tests/naser_tests/open-k"
-    subprocess.check_output(['bash','-c', bashCommand])
+    #bashCommand = "src/build/tibeebuild --name prototipo --begin kernel/syscall_entry_open --end kernel/syscall_entry_close --trace /home/frank/Documents/Artigo/1.tests/python/prototype/open-k"
+    
     
     #report
-    bashCommand = "src/report/tibeereport --name prototipo"
-    subprocess.check_output(['bash','-c', bashCommand])
+    #bashCommand = "src/report/tibeereport --name prototipo"
+    
     
     #move
-    bashCommand = "mv prototipo.json /home/frank/Documents/Artigo/1.tests/python/prototype/data"
-    subprocess.check_output(['bash','-c', bashCommand])
+    #bashCommand = "mv prototipo.json /home/frank/Documents/Artigo/1.tests/python/prototype/data"
+    
     
 def subCall(arg1,arg2):
+    print("Subcall")
     if arg2 is not None:
         subprocess.call([arg1,arg2])
-    else: 
+    else:
         subprocess.call([arg1])
         
 def runProgAnalysis():
-    subprocess.call(['python', 'execute_analysis.py','data/prototype.json'])
+    print("Analysis")
+    subprocess.call(['python', 'execute_analysis.py','data/prototipo.json','data/test.csv'])
 
 def accumulate():
     "This function accumulates the csv for each execution"
     print("Accumulating")
+    subprocess.call(['python', 'write_read_module.py','data/test.csv','data/final.csv'])# program input - output
     
-def erase():
-    #erase trace:
-    #erase db
+    
+def erase_files(arcs):
+    "This function erases the files"
+    print("Delete files")
+    for each in arcs:
+        os.remove(each)
     #erase csv
-    print("I am erasing")
+    #os.remove("data/test.csv")
+    print("I am erasing a file")
+    
+def erase_dir(directories):
+    print("Delete archive")
+    for each in directories:
+        shutil.rmtree(each)
 
-#begin:
-function("ls -1")
-password()
+def simulation():
+    "This simulates"
+    print("Simulation")
+    #begin:
+    xis("ls -1")
+    password()
 
-#run and generate the trace:
-runProgramAndTrace()
-#tigerBeatle:
-tigerBeatle()
-#Analysis:
-runProgAnalysis()
+    #run and generate the trace:
+    runProgramAndTrace()
+    #tigerBeatle:
+    tigerBeatle()
+    #Analysis:
+    runProgAnalysis()
+    #Accumulate:
+    accumulate()
+    #Delete:
+    erase_files(['data/test.csv'])
+    erase_dir(["open-k"])
+#    subCall("date","")
+#    subprocess.call(["clear"])
 
-subCall("date","")
-subprocess.call(["clear"])
-
+def wait(time_wait):
+    while True:
+        "This prints once 20 cents"
+        simulation()
+        time.sleep(time_wait)#seconds
 
 #prototype:
-
+#erase_dir(["data/D"])
+#accumulate()
+simulation()
+#wait(20)
+#password()
 
 #subprocess.call(["cd",".."])
 

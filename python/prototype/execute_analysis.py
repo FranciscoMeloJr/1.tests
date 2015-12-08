@@ -6,13 +6,14 @@ from main_module import *
 
 
 def main(argv):
-    if sys.argv[1] is not None:
-        Json = sys.argv[1]
-        if sys.argv[2] is not None:
-            Csv= sys.argv[2]
-    else:
+    print("Main Execute Analysis")
+    print(argv)
+    if len(argv)== 0:
         Json = 'data/open1000.json'
         Csv = 'data/test.csv'
+    else:
+        Json = argv[0]
+        Csv = argv[1]
         
     dic_groups = func_do_script(Json,Csv)
 
@@ -21,14 +22,9 @@ def main(argv):
     print(len(dic_groups['C']))
     print(len(dic_groups['D']))
     
-    func_save_csv(Json, Csv, dic_groups)
-
-    test2 = 'data/open1001.json'
-    dic_groups = func_do_script(test2)
-    print(len(dic_groups['A']))
-    print(len(dic_groups['B']))
-    print(len(dic_groups['C']))
-    print(len(dic_groups['D']))
+    #test2 = 'data/open1001.json'
+    #csv2 = 'data/test2.csv'
+    #dic_groups = func_do_script(test2,csv2)
 
 if __name__ == "__main__":
    main(sys.argv[1:])
