@@ -696,10 +696,10 @@ class trace_analysis:
         #save = [['A','B','C','D'],['1092','6','1','0'],['13','15','13','15']]
         length = len(save[0])
 
-        with open(file, 'wb') as testfile:
+        with open(file, 'a') as testfile:
             csv_writer = csv.writer(testfile)
-            for y in range(length):
-                csv_writer.writerow([x[y] for x in save])
+            for each in save:
+                csv_writer.writerow(each)
 
     def write_groups_csv(self, csv, ans,y):
         aux = []
@@ -718,7 +718,25 @@ class trace_analysis:
     
         #print aux
         
-    
+    def test():
+        analysis = trace_analysis('data/prototipo.json',1,'N')
+        teste = analysis.do_lists('a')
+        print(len(teste))
+
+        print(analysis.merge_metrics([1,2,3],[5,6,7],[]))
+        #plot_point_color(3,2,'b',50)
+        #svm_ovo()
+        #define the groups of test
+        list_x = [[0,0],[50,0],[150,0],[6,6],[10,10],[100,0],[100,10],[0,5],[0,10],[350,0],[250,0],[359,10],[340,10]]
+        list_y = ['A','A','A','B','B','B','B','C','C','D','D','D','D']
+        #define the test to be applied
+        example = [[0, 0], [5, 5], [8, 8], [5, 5], [6, 6], [5, 5], [350, 0],[150,0],[300,10],[310,10]]
+        ans = analysis.takes_list_gives_svm_ovo_result(list_x, list_y, example)
+        #print the ans
+        analysis.plot_point_color(ans)# which call for color_list([[1,2,'A'],[1,2,'A']])) -< [1,2,'b']
+        ans = analysis.build_groups(ans)
+        #analysis.write_csv("data/test.csv",analysis.build_groups(ans))
+        analysis.write_groups_csv("data/test.csv", ans,'N')
                 
 ##This creates a list of all durations:    
 #lista = do_lists('a')
@@ -762,21 +780,4 @@ class trace_analysis:
 #SVM(a,b,array,"Duration")
 #tests unitario:
 #Classes:
-analysis = trace_analysis('data/prototipo.json',1,'N')
-teste = analysis.do_lists('a')
-print(len(teste))
 
-print(analysis.merge_metrics([1,2,3],[5,6,7],[]))
-#plot_point_color(3,2,'b',50)
-#svm_ovo()
-#define the groups of test
-list_x = [[0,0],[50,0],[150,0],[6,6],[10,10],[100,0],[100,10],[0,5],[0,10],[350,0],[250,0],[359,10],[340,10]]
-list_y = ['A','A','A','B','B','B','B','C','C','D','D','D','D']
-#define the test to be applied
-example = [[0, 0], [5, 5], [8, 8], [5, 5], [6, 6], [5, 5], [350, 0],[150,0],[300,10],[310,10]]
-ans = analysis.takes_list_gives_svm_ovo_result(list_x, list_y, example)
-#print the ans
-analysis.plot_point_color(ans)# which call for color_list([[1,2,'A'],[1,2,'A']])) -< [1,2,'b']
-ans = analysis.build_groups(ans)
-#analysis.write_csv("data/test.csv",analysis.build_groups(ans))
-analysis.write_groups_csv("data/test.csv", ans,'N')

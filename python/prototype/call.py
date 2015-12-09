@@ -21,7 +21,7 @@ def xis(arg):
     
 def password():
     "Sudo Su function"
-    os.popen("sudo -S %s"%('ls'), 'w').write('Josias2103\n')
+    os.popen("sudo -S %s"%('ls'), 'w').write('\n')
     
 def runProgramAndTrace():
     subprocess.call(['lttng-simple', '-k','-s','--','./open'])
@@ -88,7 +88,6 @@ def simulation():
     print("Simulation")
     #begin:
     xis("ls -1")
-    password()
 
     #run and generate the trace:
     runProgramAndTrace()
@@ -99,22 +98,41 @@ def simulation():
     #Accumulate:
     accumulate()
     #Delete:
-    erase_files(['data/test.csv'])
+    #erase_files(['data/test.csv'])
     erase_dir(["open-k"])
 #    subCall("date","")
 #    subprocess.call(["clear"])
 
-def wait(time_wait):
-    while True:
+def show():
+    "Show the analysis"
+    print("Show")
+    subprocess.call(['python', 'module_csv.py','data/test.csv'])# program input - output
+    
+def wait(time_wait,total):
+    i = 0
+    while i<total:
         "This prints once 20 cents"
         simulation()
-        time.sleep(time_wait)#seconds
+        time.sleep(float(time_wait))#seconds
+        i+=1
+    show()
 
+def main(argv):
+    if len(argv)== 0:
+        wait(20,2)
+    else:
+        times = argv[1]
+        wait_time = argv[0]
+        wait(wait_time, times)
+
+if __name__ == "__main__":
+   main(sys.argv[1:])
 #prototype:
 #erase_dir(["data/D"])
 #accumulate()
-simulation()
-#wait(20)
+#simulation()
+
+
 #password()
 
 #subprocess.call(["cd",".."])

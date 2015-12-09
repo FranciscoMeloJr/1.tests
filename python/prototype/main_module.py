@@ -84,7 +84,7 @@ def func_do_script(arg,arg2):
     print(dic_groups['D'])
 
     #csv:
-    analysis.write_csv(arg2,dic_groups)
+    #analysis.write_csv(arg2,dic_groups)
     analysis.write_groups_csv(arg2,dic_groups,'N')#n stands for not print group labels:
     
     return dic_groups

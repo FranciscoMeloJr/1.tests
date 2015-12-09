@@ -49,7 +49,7 @@ def main(argv):
     else:
         input = argv[0]
         output = argv[1]
-    call(input,output)#'data/test2.csv')
+    call(input,output) #'data/test2.csv')
 
 if __name__ == "__main__":
    main(sys.argv[1:])
