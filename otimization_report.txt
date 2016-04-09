@@ -1,0 +1,61 @@
+frank@frank-desktop:~/Documents/1.tests/new$ g++ -O0 -o test hello.C
+frank@frank-desktop:~/Documents/1.tests/new$ ls -las
+total 40
+ 4 drwxrwxr-x  2 frank frank 4096 Apr  7 15:34 .
+ 4 drwxrwxr-x 12 frank frank 4096 Apr  7 15:01 ..
+12 -rwxrwxr-x  1 frank frank 9368 Apr  7 15:22 hello
+ 4 -rw-rw-r--  1 frank frank  162 Apr  7 15:17 hello.C
+12 -rwxrwxr-x  1 frank frank 9000 Apr  7 15:34 test
+ 4 -rw-rw-r--  1 frank frank  275 Apr  7 15:04 test_3.cpp
+frank@frank-desktop:~/Documents/1.tests/new$ g++ -O1 -o test hello.C
+frank@frank-desktop:~/Documents/1.tests/new$ ls -las
+total 40
+ 4 drwxrwxr-x  2 frank frank 4096 Apr  7 15:34 .
+ 4 drwxrwxr-x 12 frank frank 4096 Apr  7 15:01 ..
+12 -rwxrwxr-x  1 frank frank 9368 Apr  7 15:22 hello
+ 4 -rw-rw-r--  1 frank frank  162 Apr  7 15:17 hello.C
+12 -rwxrwxr-x  1 frank frank 8928 Apr  7 15:34 test
+ 4 -rw-rw-r--  1 frank frank  275 Apr  7 15:04 test_3.cpp
+frank@frank-desktop:~/Documents/1.tests/new$ g++ -O2 -o test hello.C
+frank@frank-desktop:~/Documents/1.tests/new$ ls -las
+total 40
+ 4 drwxrwxr-x  2 frank frank 4096 Apr  7 15:34 .
+ 4 drwxrwxr-x 12 frank frank 4096 Apr  7 15:01 ..
+12 -rwxrwxr-x  1 frank frank 9368 Apr  7 15:22 hello
+ 4 -rw-rw-r--  1 frank frank  162 Apr  7 15:17 hello.C
+12 -rwxrwxr-x  1 frank frank 8928 Apr  7 15:34 test
+ 4 -rw-rw-r--  1 frank frank  275 Apr  7 15:04 test_3.cpp
+frank@frank-desktop:~/Documents/1.tests/new$ g++ -O3 -o test hello.C
+frank@frank-desktop:~/Documents/1.tests/new$ ls -las
+total 40
+ 4 drwxrwxr-x  2 frank frank 4096 Apr  7 15:34 .
+ 4 drwxrwxr-x 12 frank frank 4096 Apr  7 15:01 ..
+12 -rwxrwxr-x  1 frank frank 9368 Apr  7 15:22 hello
+ 4 -rw-rw-r--  1 frank frank  162 Apr  7 15:17 hello.C
+12 -rwxrwxr-x  1 frank frank 8928 Apr  7 15:34 test
+ 4 -rw-rw-r--  1 frank frank  275 Apr  7 15:04 test_3.cpp
+frank@frank-desktop:~/Documents/1.tests/new$ ./test
+Hello World!
+frank@frank-desktop:~/Documents/1.tests/new$ ./test
+Hello World!
+frank@frank-desktop:~/Documents/1.tests/new$ g++ -O0 -o test hello.C
+frank@frank-desktop:~/Documents/1.tests/new$ g++ -O0 -o test hello.C
+sfrank@frank-desktop:~/Documents/1.tests/new$ g++ -Os -o test hello.C
+frank@frank-desktop:~/Documents/1.tests/new$ ls -las
+total 40
+ 4 drwxrwxr-x  2 frank frank 4096 Apr  7 15:36 .
+ 4 drwxrwxr-x 12 frank frank 4096 Apr  7 15:01 ..
+12 -rwxrwxr-x  1 frank frank 9368 Apr  7 15:22 hello
+ 4 -rw-rw-r--  1 frank frank  162 Apr  7 15:17 hello.C
+12 -rwxrwxr-x  1 frank frank 8928 Apr  7 15:36 test
+ 4 -rw-rw-r--  1 frank frank  275 Apr  7 15:04 test_3.cpp
+frank@frank-desktop:~/Documents/1.tests/new$ g++ -Ofast -o test hello.C
+frank@frank-desktop:~/Documents/1.tests/new$ ls -las
+total 40
+ 4 drwxrwxr-x  2 frank frank  4096 Apr  7 15:37 .
+ 4 drwxrwxr-x 12 frank frank  4096 Apr  7 15:01 ..
+12 -rwxrwxr-x  1 frank frank  9368 Apr  7 15:22 hello
+ 4 -rw-rw-r--  1 frank frank   162 Apr  7 15:17 hello.C
+12 -rwxrwxr-x  1 frank frank 10408 Apr  7 15:37 test
+ 4 -rw-rw-r--  1 frank frank   275 Apr  7 15:04 test_3.cpp
+

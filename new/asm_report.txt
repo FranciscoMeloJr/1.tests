@@ -1,0 +1,196 @@
+
+hello.o:     file format elf64-x86-64
+hello.o
+architecture: i386:x86-64, flags 0x00000011:
+HAS_RELOC, HAS_SYMS
+start address 0x0000000000000000
+
+Sections:
+Idx Name          Size      VMA               LMA               File off  Algn
+  0 .text         0000015f  0000000000000000  0000000000000000  00000040  2**0
+                  CONTENTS, ALLOC, LOAD, RELOC, READONLY, CODE
+  1 .data         00000000  0000000000000000  0000000000000000  0000019f  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          00000001  0000000000000000  0000000000000000  0000019f  2**0
+                  ALLOC
+  3 .rodata       0000000e  0000000000000000  0000000000000000  0000019f  2**0
+                  CONTENTS, ALLOC, LOAD, READONLY, DATA
+  4 .gcc_except_table 00000028  0000000000000000  0000000000000000  000001ad  2**0
+                  CONTENTS, ALLOC, LOAD, READONLY, DATA
+  5 .init_array   00000008  0000000000000000  0000000000000000  000001d8  2**3
+                  CONTENTS, ALLOC, LOAD, RELOC, DATA
+  6 .comment      0000002e  0000000000000000  0000000000000000  000001e0  2**0
+                  CONTENTS, READONLY
+  7 .note.GNU-stack 00000000  0000000000000000  0000000000000000  0000020e  2**0
+                  CONTENTS, READONLY
+  8 .eh_frame     000000c8  0000000000000000  0000000000000000  00000210  2**3
+                  CONTENTS, ALLOC, LOAD, RELOC, READONLY, DATA
+SYMBOL TABLE:
+0000000000000000 l    df *ABS*	0000000000000000 hello.C
+0000000000000000 l    d  .text	0000000000000000 .text
+0000000000000000 l    d  .data	0000000000000000 .data
+0000000000000000 l    d  .bss	0000000000000000 .bss
+0000000000000000 l     O .bss	0000000000000001 _ZStL8__ioinit
+0000000000000000 l    d  .rodata	0000000000000000 .rodata
+0000000000000000 l    d  .gcc_except_table	0000000000000000 .gcc_except_table
+00000000000000a2 l     F .text	0000000000000086 _Z41__static_initialization_and_destruction_0ii
+0000000000000128 l     F .text	0000000000000037 _GLOBAL__sub_I_main
+0000000000000000 l    d  .init_array	0000000000000000 .init_array
+0000000000000000 l    d  .note.GNU-stack	0000000000000000 .note.GNU-stack
+0000000000000000 l    d  .eh_frame	0000000000000000 .eh_frame
+0000000000000000 l    d  .comment	0000000000000000 .comment
+0000000000000000 g     F .text	0000000000000069 main
+0000000000000000         *UND*	0000000000000000 __gxx_personality_v0
+0000000000000000         *UND*	0000000000000000 __cyg_profile_func_enter
+0000000000000000         *UND*	0000000000000000 _ZSt4cout
+0000000000000000         *UND*	0000000000000000 _ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc
+0000000000000000         *UND*	0000000000000000 __cyg_profile_func_exit
+0000000000000000         *UND*	0000000000000000 _Unwind_Resume
+0000000000000069 g     F .text	0000000000000039 _Z3foov
+0000000000000000         *UND*	0000000000000000 _ZNSt8ios_base4InitC1Ev
+0000000000000000         *UND*	0000000000000000 .hidden __dso_handle
+0000000000000000         *UND*	0000000000000000 _ZNSt8ios_base4InitD1Ev
+0000000000000000         *UND*	0000000000000000 __cxa_atexit
+
+
+
+Disassembly of section .text:
+
+0000000000000000 <main>:
+   0:	55                   	push   %rbp
+   1:	48 89 e5             	mov    %rsp,%rbp
+   4:	53                   	push   %rbx
+   5:	48 83 ec 08          	sub    $0x8,%rsp
+   9:	48 8b 45 08          	mov    0x8(%rbp),%rax
+   d:	48 89 c6             	mov    %rax,%rsi
+  10:	bf 00 00 00 00       	mov    $0x0,%edi
+			11: R_X86_64_32	main
+  15:	e8 00 00 00 00       	callq  1a <main+0x1a>
+			16: R_X86_64_PC32	__cyg_profile_func_enter-0x4
+  1a:	be 00 00 00 00       	mov    $0x0,%esi
+			1b: R_X86_64_32	.rodata
+  1f:	bf 00 00 00 00       	mov    $0x0,%edi
+			20: R_X86_64_32	_ZSt4cout
+  24:	e8 00 00 00 00       	callq  29 <main+0x29>
+			25: R_X86_64_PC32	_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc-0x4
+  29:	bb 00 00 00 00       	mov    $0x0,%ebx
+  2e:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  32:	48 89 c6             	mov    %rax,%rsi
+  35:	bf 00 00 00 00       	mov    $0x0,%edi
+			36: R_X86_64_32	main
+  3a:	e8 00 00 00 00       	callq  3f <main+0x3f>
+			3b: R_X86_64_PC32	__cyg_profile_func_exit-0x4
+  3f:	89 d8                	mov    %ebx,%eax
+  41:	eb 1f                	jmp    62 <main+0x62>
+  43:	48 89 c3             	mov    %rax,%rbx
+  46:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  4a:	48 89 c6             	mov    %rax,%rsi
+  4d:	bf 00 00 00 00       	mov    $0x0,%edi
+			4e: R_X86_64_32	main
+  52:	e8 00 00 00 00       	callq  57 <main+0x57>
+			53: R_X86_64_PC32	__cyg_profile_func_exit-0x4
+  57:	48 89 d8             	mov    %rbx,%rax
+  5a:	48 89 c7             	mov    %rax,%rdi
+  5d:	e8 00 00 00 00       	callq  62 <main+0x62>
+			5e: R_X86_64_PC32	_Unwind_Resume-0x4
+  62:	48 83 c4 08          	add    $0x8,%rsp
+  66:	5b                   	pop    %rbx
+  67:	5d                   	pop    %rbp
+  68:	c3                   	retq   
+
+0000000000000069 <_Z3foov>:
+  69:	55                   	push   %rbp
+  6a:	48 89 e5             	mov    %rsp,%rbp
+  6d:	48 83 ec 10          	sub    $0x10,%rsp
+  71:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  75:	48 89 c6             	mov    %rax,%rsi
+  78:	bf 00 00 00 00       	mov    $0x0,%edi
+			79: R_X86_64_32	_Z3foov
+  7d:	e8 00 00 00 00       	callq  82 <_Z3foov+0x19>
+			7e: R_X86_64_PC32	__cyg_profile_func_enter-0x4
+  82:	81 7d fc e7 03 00 00 	cmpl   $0x3e7,-0x4(%rbp)
+  89:	7f 02                	jg     8d <_Z3foov+0x24>
+  8b:	eb f5                	jmp    82 <_Z3foov+0x19>
+  8d:	90                   	nop
+  8e:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  92:	48 89 c6             	mov    %rax,%rsi
+  95:	bf 00 00 00 00       	mov    $0x0,%edi
+			96: R_X86_64_32	_Z3foov
+  9a:	e8 00 00 00 00       	callq  9f <_Z3foov+0x36>
+			9b: R_X86_64_PC32	__cyg_profile_func_exit-0x4
+  9f:	90                   	nop
+  a0:	c9                   	leaveq 
+  a1:	c3                   	retq   
+
+00000000000000a2 <_Z41__static_initialization_and_destruction_0ii>:
+  a2:	55                   	push   %rbp
+  a3:	48 89 e5             	mov    %rsp,%rbp
+  a6:	53                   	push   %rbx
+  a7:	48 83 ec 18          	sub    $0x18,%rsp
+  ab:	89 7d ec             	mov    %edi,-0x14(%rbp)
+  ae:	89 75 e8             	mov    %esi,-0x18(%rbp)
+  b1:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  b5:	48 89 c6             	mov    %rax,%rsi
+  b8:	bf 00 00 00 00       	mov    $0x0,%edi
+			b9: R_X86_64_32	.text+0xa2
+  bd:	e8 00 00 00 00       	callq  c2 <_Z41__static_initialization_and_destruction_0ii+0x20>
+			be: R_X86_64_PC32	__cyg_profile_func_enter-0x4
+  c2:	83 7d ec 01          	cmpl   $0x1,-0x14(%rbp)
+  c6:	75 27                	jne    ef <_Z41__static_initialization_and_destruction_0ii+0x4d>
+  c8:	81 7d e8 ff ff 00 00 	cmpl   $0xffff,-0x18(%rbp)
+  cf:	75 1e                	jne    ef <_Z41__static_initialization_and_destruction_0ii+0x4d>
+  d1:	bf 00 00 00 00       	mov    $0x0,%edi
+			d2: R_X86_64_32	.bss
+  d6:	e8 00 00 00 00       	callq  db <_Z41__static_initialization_and_destruction_0ii+0x39>
+			d7: R_X86_64_PC32	_ZNSt8ios_base4InitC1Ev-0x4
+  db:	ba 00 00 00 00       	mov    $0x0,%edx
+			dc: R_X86_64_32	__dso_handle
+  e0:	be 00 00 00 00       	mov    $0x0,%esi
+			e1: R_X86_64_32	.bss
+  e5:	bf 00 00 00 00       	mov    $0x0,%edi
+			e6: R_X86_64_32	_ZNSt8ios_base4InitD1Ev
+  ea:	e8 00 00 00 00       	callq  ef <_Z41__static_initialization_and_destruction_0ii+0x4d>
+			eb: R_X86_64_PC32	__cxa_atexit-0x4
+  ef:	48 8b 45 08          	mov    0x8(%rbp),%rax
+  f3:	48 89 c6             	mov    %rax,%rsi
+  f6:	bf 00 00 00 00       	mov    $0x0,%edi
+			f7: R_X86_64_32	.text+0xa2
+  fb:	e8 00 00 00 00       	callq  100 <_Z41__static_initialization_and_destruction_0ii+0x5e>
+			fc: R_X86_64_PC32	__cyg_profile_func_exit-0x4
+ 100:	eb 1f                	jmp    121 <_Z41__static_initialization_and_destruction_0ii+0x7f>
+ 102:	48 89 c3             	mov    %rax,%rbx
+ 105:	48 8b 45 08          	mov    0x8(%rbp),%rax
+ 109:	48 89 c6             	mov    %rax,%rsi
+ 10c:	bf 00 00 00 00       	mov    $0x0,%edi
+			10d: R_X86_64_32	.text+0xa2
+ 111:	e8 00 00 00 00       	callq  116 <_Z41__static_initialization_and_destruction_0ii+0x74>
+			112: R_X86_64_PC32	__cyg_profile_func_exit-0x4
+ 116:	48 89 d8             	mov    %rbx,%rax
+ 119:	48 89 c7             	mov    %rax,%rdi
+ 11c:	e8 00 00 00 00       	callq  121 <_Z41__static_initialization_and_destruction_0ii+0x7f>
+			11d: R_X86_64_PC32	_Unwind_Resume-0x4
+ 121:	48 83 c4 18          	add    $0x18,%rsp
+ 125:	5b                   	pop    %rbx
+ 126:	5d                   	pop    %rbp
+ 127:	c3                   	retq   
+
+0000000000000128 <_GLOBAL__sub_I_main>:
+ 128:	55                   	push   %rbp
+ 129:	48 89 e5             	mov    %rsp,%rbp
+ 12c:	48 8b 45 08          	mov    0x8(%rbp),%rax
+ 130:	48 89 c6             	mov    %rax,%rsi
+ 133:	bf 00 00 00 00       	mov    $0x0,%edi
+			134: R_X86_64_32	.text+0x128
+ 138:	e8 00 00 00 00       	callq  13d <_GLOBAL__sub_I_main+0x15>
+			139: R_X86_64_PC32	__cyg_profile_func_enter-0x4
+ 13d:	be ff ff 00 00       	mov    $0xffff,%esi
+ 142:	bf 01 00 00 00       	mov    $0x1,%edi
+ 147:	e8 56 ff ff ff       	callq  a2 <_Z41__static_initialization_and_destruction_0ii>
+ 14c:	48 8b 45 08          	mov    0x8(%rbp),%rax
+ 150:	48 89 c6             	mov    %rax,%rsi
+ 153:	bf 00 00 00 00       	mov    $0x0,%edi
+			154: R_X86_64_32	.text+0x128
+ 158:	e8 00 00 00 00       	callq  15d <_GLOBAL__sub_I_main+0x35>
+			159: R_X86_64_PC32	__cyg_profile_func_exit-0x4
+ 15d:	5d                   	pop    %rbp
+ 15e:	c3                   	retq   
