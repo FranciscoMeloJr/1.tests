@@ -438,18 +438,36 @@ Friday - Vendredi 4/12
 		Show the results
 
 Saturday - Samedi
+	concertou computador
+Lundi - 1/03
+	computador ok, concertar 
+	talk with Foutsh	
 
-
-
-
-
-
-
-
-
-
-
-
+Mardi - 2/03
+	install all, re-start doing the stuff
+	- git push
+	
+	rebase
+	delete the commits
+	push
+	
+	talk with Foutsh
+	push stuff
+	6 -> go to verdun
+	
+Mercredi	
+	
+	a mina furou 
+		
+Jeudi
+	read the article
+	do the cloud instalation
+	
+	learn french
+	study a bit of espiritism
+	
+Vendredi
+	
 #Panda:
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -671,47 +689,546 @@ def svm_ovo_applied(list_x,list_y,list_points):
     #print(dec.shape[2])
     return ans
 
+Monday 14
+	Finishing the cluster
+	sending the report for class
 
+Tuesday 15
+	reading about linux
+	reading about system performance  
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-				
-Monday
-Tuesday
 Wednesday
+	Meeting	
 Thursday
-Friday		
 
+Friday
+	
+
+Monday 4 de Abril
+	
+Tuesday 5 de Abril 
+	
+Wednesday
+	Meet with boss
+		Comparing traces using straight comparison
+		Comparing traces using DTW
+		Comparing traces using straight comparison
+	
+two traces of system calls
+	one with low syscalls
+	one with high latency syscalls
+
+default String getName() 
+{
+        return getName();
+}
+
+	
+/*Frank Comparator 2*/
+package org.eclipse.tracecompass.internal.lttng2.kernel.segment.analysis;
+//package org.eclipse.tracecompass.internal.lttng2.kernel.core.segment.analysis;
+
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.util.ArrayList;
+import java.util.Collection;
+
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.tracecompass.analysis.os.linux.core.latency.SystemCallLatencyAnalysis;
+import org.eclipse.tracecompass.analysis.timing.core.segmentstore.AbstractSegmentStoreAnalysisModule;
+import org.eclipse.tracecompass.segmentstore.core.ISegment;
+import org.eclipse.tracecompass.segmentstore.core.ISegmentStore;
+import org.eclipse.tracecompass.segmentstore.core.treemap.TreeMapStore;
+import org.eclipse.tracecompass.tmf.core.exceptions.TmfAnalysisException;
+import org.eclipse.tracecompass.tmf.core.trace.ITmfTrace;
+import org.eclipse.tracecompass.tmf.core.trace.TmfTraceManager;
+import org.eclipse.tracecompass.tmf.core.trace.TmfTraceUtils;
+//import org.eclipse.tracecompass.tmf.core.trace.ITmfTrace;
+//import org.eclipse.tracecompass.tmf.core.trace.TmfTraceManager;
+
+/**
+ * @since 2.0
+ */
+public class FrankSegmentComparator extends AbstractSegmentStoreAnalysisModule {//extends TmfAbstractAnalysisModule {
+
+    /**
+     *
+     */
+    public static final String ID = "org.eclipse.tracecompass.internal.lttng2.kernel.segment.analysis.FrankSegmentComparator"; //$NON-NLS-1$
+
+
+
+    /**
+     * @param list_x
+     */
+    protected void make_straight_comparison(ArrayList<ISegmentStore<@NonNull ISegment>> list){
+        System.out.println("make_straight_comparison");
+        //list to get first and second argument:
+        boolean empty = list.isEmpty();
+
+        ISegmentStore<@NonNull ISegment> first_storage = list.get(0);
+        ISegmentStore<@NonNull ISegment> second_storage = list.get(1);
+
+        System.out.println("make_straight_comparison is it empty?" + empty);
+
+        System.out.println("Are they straight equal?" + first_storage.equals(second_storage));
+       //Straight comparison
+        for ( @NonNull ISegmentStore<@NonNull ISegment> store: list)
+        {
+            //element.equals();
+
+            System.out.println(store.size());
+            for ( @NonNull ISegment element: store)
+            {
+                System.out.println(element);
+            }
+        }
+        //if(size1 == size2)
+        //    System.out.println("Their sizes are equal");
+
+        return;
+    }
+
+    /*Comparision 2*/
+    protected void make_windows_folding_comparison(ArrayList<ISegmentStore<@NonNull ISegment>> list){
+        System.out.println("make_windows_folding_comparison");
+        //list to get first and second argument:
+        boolean empty = list.isEmpty();
+
+        ISegmentStore<@NonNull ISegment> first_storage = list.get(0);
+        ISegmentStore<@NonNull ISegment> second_storage = list.get(1);
+        
+        //ISegment[3] Vetor = null;  
+        //Put in Segment Storage
+
+        System.out.println("Are they straight equal?" + first_storage.equals(second_storage));
+       //Straight comparison
+        for ( @NonNull ISegmentStore<@NonNull ISegment> store: list)
+        {
+            //element.equals();
+
+            System.out.println(store.size());
+            for ( @NonNull ISegment element: store)
+            {
+                System.out.println(element);
+            }
+        }
+
+        //if(size1 == size2)
+        //    System.out.println("Their sizes are equal");
+
+        return; //return the comparision table
+    }
+    /*Comparison 3*/
+    protected void make_correlation_comparison(ArrayList<ISegmentStore<@NonNull ISegment>> list_x){
+        System.out.println("make_windows_folding_comparison");
+        //list to get first and second argument:
+        boolean empty = list_x.isEmpty();
+
+        //ISegmentStore<@NonNull ISegment> second = list_x.get(1);
+        int correlation_index = 3;
+
+        System.out.println("make_straight_comparison 2" + empty + correlation_index);
+        /*for ( @NonNull ISegment element: first)
+        {
+            //Make the correlation
+
+
+        }*/
+
+        return; //return correlation table
+    }
+
+    /*Comparision 3*/
+    protected void make_abstraction_comparison(ArrayList<ISegmentStore<@NonNull ISegment>> list_x){
+        System.out.println("make_windows_folding_comparison");
+        //list to get first and second argument:
+        boolean empty = list_x.isEmpty();
+
+        //ISegmentStore<@NonNull ISegment> second = list_x.get(1);
+        int abstraction_index = 3;
+
+        System.out.println("make_straight_comparison 2" + abstraction_index + empty);
+        /*for ( @NonNull ISegment element: first)
+        {
+
+        }*/
+
+        return;
+    }
+
+    @Override
+    protected void canceling() {
+        // TODO Auto-generated method stub
+
+    }
+    @Override
+    protected Object @NonNull [] readObject(@NonNull ObjectInputStream ois) throws ClassNotFoundException, IOException {
+        // TODO Auto-generated method stub
+        return null;
+    }
+    @Override
+    protected boolean buildAnalysisSegments(@NonNull ISegmentStore<@NonNull ISegment> segmentStore, @NonNull IProgressMonitor monitor) throws TmfAnalysisException {
+        
+            System.out.println("executeAnalysis"); //$NON-NLS-1$
+            ITmfTrace trace = getTrace();
+            int i = 0;
+            //@NonNull
+            Collection<@NonNull ITmfTrace> traceSet = TmfTraceManager.getTraceSet(trace);
+            System.out.println(traceSet.isEmpty());
+            //@Nullable
+            ISegmentStore<@NonNull ISegment> sumResult =  new TreeMapStore<>();
+
+            //Array:
+            ArrayList<ISegmentStore<@NonNull ISegment>> list_segments = new ArrayList<>();
+            //eachResult:
+            ISegmentStore<@NonNull ISegment> eachResult;
+            //SystemCallLatency:
+            SystemCallLatencyAnalysis eachSystemCall;
+
+            for (ITmfTrace t: traceSet)
+            {
+                //TmfTraceUtils.getAnalysisModuleOfClass(
+                System.out.println(t.toString());
+                eachSystemCall = TmfTraceUtils.getAnalysisModuleOfClass(t, SystemCallLatencyAnalysis.class, SystemCallLatencyAnalysis.ID);
+
+                //eachSystemCall = TmfTraceUtils.getAnalysisModuleOfClass(t, SystemCallLatencyAnalysis.class, SystemCallLatencyAnalysis.ID);
+                if(eachSystemCall == null) {
+                    System.out.println("break");
+                    break;
+                }
+
+                eachSystemCall.schedule();
+                eachSystemCall.waitForCompletion();
+                eachResult = eachSystemCall.getSegmentStore();
+
+                if(eachResult != null) {
+                    System.out.println("Each result");
+                    sumResult.addAll(eachResult);//(ISegmentStore) eachResult);
+                    list_segments.add(eachResult);
+                }
+                else{
+                    System.out.println("empty");
+                }
+            }
+
+            //Send the first and second for the view:
+            //list_segments.get(0);
+            //list_segments.get(1);
+            make_straight_comparison(list_segments);
+
+            if(i <1) {
+                return false;
+            }
+         
+        return false;
+    }
+
+}
+
+
+/*Frank Comparator*/
+public class FrankSegmentComparator extends TmfAbstractAnalysisModule {
+
+    public static final String ID = "org.eclipse.tracecompass.lttng2.kernel.core.frank.segment.store"; //$NON-NLS-1$
+
+    @Override
+    protected boolean executeAnalysis(@NonNull IProgressMonitor monitor) throws TmfAnalysisException {
+
+        ITmfTrace trace = getTrace();
+        @NonNull
+        Collection<@NonNull ITmfTrace> traceSet = TmfTraceManager.getTraceSet(trace);
+
+        for (ITmfTrace t: traceSet)
+        {
+            //TmfTraceUtils.getAnalysisModuleOfClass(
+            IAnalysisModule a = t.getAnalysisModule(getId());
+            System.out.println(a);
+            //System.out.println(t.getName());
+            
+	    t.
+
+        }
+
+        return false;
+    }
+
+    @Override
+    protected void canceling() {
+        // TODO Auto-generated method stub
+
+    }
+
+}
+
+
+protected boolean executeAnalysis(@NonNull IProgressMonitor monitor) throws TmfAnalysisException {
+  
+         ITmfTrace trace = getTrace();
+          int i = 0;
+         ITmfTrace trace = getTrace();
+          @NonNull
+          Collection<@NonNull ITmfTrace> traceSet = TmfTraceManager.getTraceSet(trace);
+          @Nullable
+          ISegmentStore<@NonNull ISegment> sumResult =  new TreeMapStore<>();
+  
+         //Array:
+         ArrayList<ISegmentStore<@NonNull ISegment>> list_segments = new ArrayList<>();
+         //eachResult:
+         ISegmentStore<@NonNull ISegment> eachResult;
+         //SystemCallLatency:
+         SystemCallLatencyAnalysis eachSystemCall;
+ 
+          for (ITmfTrace t: traceSet)
+          {
+              //TmfTraceUtils.getAnalysisModuleOfClass(
+             SystemCallLatencyAnalysis eachSystemCall = TmfTraceUtils.getAnalysisModuleOfClass(t, SystemCallLatencyAnalysis.class, SystemCallLatencyAnalysis.ID);
+             eachSystemCall = TmfTraceUtils.getAnalysisModuleOfClass(t, SystemCallLatencyAnalysis.class, SystemCallLatencyAnalysis.ID);
+             if(eachSystemCall == null) {
+                  break;
+              }
+             ISegmentStore<@NonNull ISegment> eachResult = eachSystemCall.getResults();
+             eachResult = eachSystemCall.getSegmentStore();
+ 
+              if(eachResult != null) {
+                  System.out.println(eachResult);
+                  sumResult.addAll(eachResult);//(ISegmentStore) eachResult);
+                 list_segments.add(eachResult);
+              }
+ 
+          }
+  
+         //Send the first and second for the view:
+         //list_segments.get(0);
+         //list_segments.get(1);
+         make_view(list_segments);
+ 
+         if(i <1) {
+             return false;
+         }
+          return true; //it was returning false, I changed for returning true.
+      }
+
+For Trace:
+package org.eclipse.tracecompass.analysis.os.linux.core.latency;
+	Views:
+		SegmentView
+		SegmentDensityViewer
+		SegmentTableViewer	
 		
+	Analysis:
+		FrankSegmentAnalysis
 
-			
+For Experiments:
+package org.eclipse.tracecompass.internal.lttng2.kernel.segment.analysis;
+	View:
+	    FrankSegmentView
+	Analysis:
+	    FrankSegmentComparator
+
+in org.eclipse plugin xml
+	org.eclipse.tracecompass.internal.lttng2.kernel.ui.frankSegmentView;x-internal:=false,
+		
+package org.eclipse.tracecompass.internal.analysis.os.linux.ui.views.latency;
+SegmentMacroView
+
+
+
+
+/* SegmentAnalysis*/
+
+/*******************************************************************************
+ * Copyright (c) 2015, 2016 EfficiOS Inc., Ericsson
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *******************************************************************************/
+
+package org.eclipse.tracecompass.analysis.os.linux.core.latency;
+
+import static org.eclipse.tracecompass.common.core.NonNullUtils.checkNotNull;
+
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.util.Collection;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+
+import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
+import org.eclipse.tracecompass.analysis.os.linux.core.kernel.KernelTidAspect;
+import org.eclipse.tracecompass.analysis.os.linux.core.trace.IKernelAnalysisEventLayout;
+import org.eclipse.tracecompass.analysis.os.linux.core.trace.IKernelTrace;
+import org.eclipse.tracecompass.analysis.timing.core.segmentstore.AbstractSegmentStoreAnalysisEventBasedModule;
+import org.eclipse.tracecompass.segmentstore.core.ISegment;
+import org.eclipse.tracecompass.segmentstore.core.ISegmentStore;
+import org.eclipse.tracecompass.tmf.core.event.ITmfEvent;
+import org.eclipse.tracecompass.tmf.core.segment.ISegmentAspect;
+import org.eclipse.tracecompass.tmf.core.trace.ITmfTrace;
+import org.eclipse.tracecompass.tmf.core.trace.TmfTraceManager;
+
+import com.google.common.collect.ImmutableList;
+
+/**
+ * @author Alexandre Montplaisir
+ * @since 2.0
+ */
+public class SegmentAnalysis extends AbstractSegmentStoreAnalysisEventBasedModule {
+
+    /**
+     * The ID of this analysis
+     * I worked last week with Trace compass implementation I did a view and now Im changing it I was merging the traces to show in my view
+     * I
+     */
+    public static final String ID = "org.eclipse.tracecompass.analysis.os.linux.core.latency.SegmentAnalysis"; //$NON-NLS-1$
+
+    private static final String DATA_FILENAME = "latency-analysis.dat"; //$NON-NLS-1$
+
+    private static final Collection<ISegmentAspect> BASE_ASPECTS =
+            ImmutableList.of(SyscallNameAspect.INSTANCE);
+
+    @Override
+    public String getId() {
+        System.out.println("xis");
+        return ID;
+    }
+
+    @Override
+    public Iterable<ISegmentAspect> getSegmentAspects() {
+        return BASE_ASPECTS;
+    }
+
+    @Override
+    public @NonNull String getDataFileName() {
+        return DATA_FILENAME;
+    }
+
+    @Override
+    public AbstractSegmentStoreAnalysisRequest createAnalysisRequest(ISegmentStore<ISegment> syscalls) {
+        return new SegmentAnalysisRequest(syscalls);
+    }
+
+    @Override
+    protected Object[] readObject(ObjectInputStream ois) throws ClassNotFoundException, IOException {
+        return checkNotNull((Object[]) ois.readObject());
+    }
+
+    private static class SegmentAnalysisRequest extends AbstractSegmentStoreAnalysisRequest {
+
+        private final Map<Integer, SystemCall.InitialInfo> fOngoingSystemCalls = new HashMap<>();
+        private @Nullable IKernelAnalysisEventLayout fLayout;
+
+        public SegmentAnalysisRequest(ISegmentStore<ISegment> syscalls) {
+            super(syscalls);
+        }
+
+        @Override
+        public void handleData(final ITmfEvent event) {
+
+            System.out.println("handleData");
+            Collection<@NonNull ITmfTrace> traceSet = TmfTraceManager.getTraceSet(null);
+            System.out.println(traceSet.size());
+
+            super.handleData(event);
+            IKernelAnalysisEventLayout layout = fLayout;
+            if (layout == null) {
+                IKernelTrace trace = (IKernelTrace) event.getTrace();
+                layout = trace.getKernelEventLayout();
+                fLayout = layout;
+            }
+
+
+            final String eventName = event.getType().getName();
+
+            if (eventName.startsWith(layout.eventSyscallEntryPrefix()) ||
+                    eventName.startsWith(layout.eventCompatSyscallEntryPrefix())) {
+                /* This is a system call entry event */
+
+                Integer tid = KernelTidAspect.INSTANCE.resolve(event);
+                if (tid == null) {
+                    // no information on this event/trace ?
+                    return;
+                }
+
+                /* Record the event's data into the initial system call info */
+                // String syscallName = fLayout.getSyscallNameFromEvent(event);
+                long startTime = event.getTimestamp().getValue();
+                String syscallName = eventName.substring(layout.eventSyscallEntryPrefix().length());
+
+                Map<String, String> args = event.getContent().getFieldNames().stream()
+                    .collect(Collectors.toMap(Function.identity(),
+                            input -> checkNotNull(event.getContent().getField(input).getValue().toString())));
+
+                SystemCall.InitialInfo newSysCall = new SystemCall.InitialInfo(startTime, checkNotNull(syscallName), checkNotNull(args));
+                fOngoingSystemCalls.put(tid, newSysCall);
+
+            } else if (eventName.startsWith(layout.eventSyscallExitPrefix())) {
+                /* This is a system call exit event */
+
+                Integer tid = KernelTidAspect.INSTANCE.resolve(event);
+                if (tid == null) {
+                    return;
+                }
+
+                SystemCall.InitialInfo info = fOngoingSystemCalls.remove(tid);
+                if (info == null) {
+                    /*
+                     * We have not seen the entry event corresponding to this
+                     * exit (lost event, or before start of trace).
+                     */
+                    return;
+                }
+
+                long endTime = event.getTimestamp().getValue();
+                int ret = ((Long) event.getContent().getField("ret").getValue()).intValue(); //$NON-NLS-1$
+                ISegment syscall = new SystemCall(info, endTime, ret);
+                getSegmentStore().add(syscall);
+            }
+            System.out.println(getSegmentStore().toString());
+        }
+
+        @Override
+        public void handleCompleted() {
+            fOngoingSystemCalls.clear();
+        }
+    }
+
+    private static class SyscallNameAspect implements ISegmentAspect {
+        public static final ISegmentAspect INSTANCE = new SyscallNameAspect();
+
+        private SyscallNameAspect() { }
+
+        @Override
+        public String getHelpText() {
+            return checkNotNull(Messages.SegmentAspectHelpText_SystemCall);
+        }
+        @Override
+        public String getName() {
+            return checkNotNull(Messages.SegmentAspectName_SystemCall);
+        }
+        @Override
+        public @Nullable Comparator<?> getComparator() {
+            return null;
+        }
+        @Override
+        public @Nullable String resolve(ISegment segment) {
+            if (segment instanceof SystemCall) {
+                return ((SystemCall) segment).getName();
+            }
+            return EMPTY_STRING;
+        }
+    }
+
+}
+
+
+
+	
 		
 	
