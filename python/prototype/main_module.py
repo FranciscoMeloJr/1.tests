@@ -2,11 +2,18 @@
 
 #3D test:
 from test_3D import hello, function3D, function3D_args
-from final_version import *
+from analysis_module import *
 from math_module import *
 
+import sys, getopt
+import argparse
 
 def func_do_script(arg,arg2):
+    """ This function is the main funciton, basically generates all the scripts:
+    ""  take the metrics, read the json, generates list of this json put in a dictionary
+    "   then it trainnes a svm and then classify the information using this module and finally gives an output with the classification
+    """
+    #Generates an analysis, which is defined in analysis_module
     analysis = trace_analysis(arg,1,'N')
     
     #Do the same but for h - wait-blocked: a for duration
@@ -18,7 +25,7 @@ def func_do_script(arg,arg2):
     #Define an dictionary:
     dictionary = analysis.do_lists_full()
 
-    #Print the list of 'a' for this specific dictionary:
+    #Print the list of a metric for this specific dictionary:
     analysis.print_function(dictionary,'g')
 
     #Do 3D graphs:
@@ -26,7 +33,7 @@ def func_do_script(arg,arg2):
     #calc_square_sum(dictionary['a'],dictionary['b'],dictionary['e'])
 
     print("Lista duration --")
-    metric = 'a' #which is the duration
+    metric = 'a' #a corresponds in trace compare to duration
     lista = analysis.do_lists(metric)
     print(len(lista))
 
@@ -146,5 +153,55 @@ def func_do_script(arg,arg2):
     #samples:
     #list_samples(list_result_opt)
 
+#De test using input output:
+def do_test(inputFile, outputFile):
+    "This function calls the complete analysis using input and output file"
+    print("Group A")
+    if len(outputFile) and len(outputFile)>0: 
+        ans = func_do_script(inputFile,outputFile)# json and csv
+        
+#Default argument:
 def do_test():
+    "This function calls the complete analysis using input and output file"
+    print("Group A")
     ans = func_do_script('data/open1000.json',"data/test.csv")# json and csv
+        
+def metrics_generator(inputFile, outputFile):
+    print ('This is the metric generator from json to csv')
+    print (inputFile)
+
+    analysis = trace_analysis(inputFile,1,'N') #inputfile, identification and graph mode (N - off, Y - on)
+    #Define Metrics that will be in the CSV:
+    metric = ['a','b','g']
+    #Define an dictionary:
+    dictionary = analysis.do_lists_full()
+    
+    #Call the write to outputfile:
+    analysis.write_groups_in_csv(outputFile,dictionary)
+    
+def main(argv):
+    print argv
+    if (argv[0] == '-h'):
+        print 'This program is a module to analyse TRACE COMPARE (json) files'
+        print 'Enter the input and output name'
+    if (argv[0] == '-v'):
+        print 'This program is a module to analyse TRACE COMPARE (json) files'
+    if (argv[0] == '-m'):
+          print 'This will convert a json in csv file'
+          if len(argv)>1:
+              metrics_generator(argv[1],argv[2])
+          else:
+              print 'Enter input and output files'
+    if (argv[0] == '-a'):
+          print 'This will analyse a json generating a output'
+          if len(argv)>1:
+              do_test(argv[1], argv[2])
+          else:
+              do_test()
+          
+        
+if __name__ == "__main__":
+   main(sys.argv[1:])
+
+
+
